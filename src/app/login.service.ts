@@ -7,10 +7,10 @@ export interface User { username: string }
 
 @Injectable()
 export class LoginService {
-    protected headers: Headers = new Headers({'Content-Type': 'application/json'});
+    protected headers = new Headers({ 'Content-Type': 'application/json' });
 
 	protected getOptions = { withCredentials: true };
-	protected postOptions = { withCredentials: true, headers: this.headers }
+	protected postOptions = { withCredentials: true, headers: this.headers };
 
 	private hostName: string = 'localhost:3000';
 
@@ -37,7 +37,7 @@ export class LoginService {
 	}
 
 	public getProfile(): Promise<User> {
-		const url = this.getUrl('profile');
+		const url = this.getUrl('user/me');
 
 		return this.http.get(url, this.getOptions).toPromise()
 		.then((response: Response) => response.json() as User)

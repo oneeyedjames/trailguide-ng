@@ -5,7 +5,10 @@ import 'rxjs/add/operator/toPromise';
 import { Model } from './model';
 
 export class ModelService<T extends Model> {
-    protected headers: Headers = new Headers({'Content-Type': 'application/json'});
+	protected headers = new Headers({ 'Content-Type': 'application/json' });
+
+	protected getOptions = { withCredentials: true };
+	protected putOptions = { withCredentials: true, headers: this.headers };
 
 	private hostName: string = 'localhost:3000';
     private basePath: string = '/api/v1';
@@ -15,13 +18,13 @@ export class ModelService<T extends Model> {
     }
 
     public getAll(): Promise<T[]> {
-        return this.http.get(this.getUrl()).toPromise()
+        return this.http.get(this.getUrl(), this.getOptions).toPromise()
             .then((response: Response) => response.json() as T[])
             .catch(this.handleError);
     }
 
     public getOne(id: string): Promise<T> {
-        return this.http.get(this.getUrl(id)).toPromise()
+        return this.http.get(this.getUrl(id), this.getOptions).toPromise()
             .then((response: Response) => response.json() as T)
             .catch(this.handleError);
     }
@@ -31,20 +34,20 @@ export class ModelService<T extends Model> {
 	}
 
     public create(item: T): Promise<T> {
-        return this.http.post(this.getUrl(), JSON.stringify(item), { headers: this.headers })
+        return this.http.post(this.getUrl(), JSON.stringify(item), this.putOptions)
             .toPromise().then((response: Response) => response.json() as T)
             .catch(this.handleError);
     }
 
     public update(item: T): Promise<T> {
-        return this.http.put(this.getUrl(item._id), JSON.stringify(item), { headers: this.headers })
+        return this.http.put(this.getUrl(item._id), JSON.stringify(item), this.putOptions)
             .toPromise().then((response: Response) => response.json() as T)
             .catch(this.handleError);
     }
 
     public delete(item: T): Promise<T> {
-        return this.http.delete(this.getUrl(item._id)).toPromise()
-            .then((response: Response) => item)
+        return this.http.delete(this.getUrl(item._id), this.getOptions)
+			.toPromise().then((response: Response) => item)
             .catch(this.handleError);
     }
 
@@ -59,17 +62,17 @@ export class ModelService<T extends Model> {
 	}
 
     public getChildren<TObject extends Model>(parentPath: string, parentItem: TObject): Promise<T[]> {
-        const path = this.getChildPath(parentPath, parentItem);
+		const url = this.getChildUrl(parentPath, parentItem);
 
-        return this.http.get(path).toPromise()
+        return this.http.get(url).toPromise()
             .then((response: Response) => response.json() as T[])
             .catch(this.handleError);
     }
 
     public createChild<TObject extends Model>(parentPath: string, parentItem: TObject, item: T): Promise<T> {
-        const path = this.getChildPath(parentPath, parentItem);
+        const url = this.getChildUrl(parentPath, parentItem);
 
-        return this.http.post(path, JSON.stringify(item), { headers: this.headers })
+        return this.http.post(url, JSON.stringify(item), this.putOptions)
             .toPromise().then((response: Response) => response.json() as T)
             .catch(this.handleError);
     }
@@ -77,6 +80,11 @@ export class ModelService<T extends Model> {
     protected getChildPath<TObject extends Model>(parentPath: string, parentItem: TObject) {
         return `${this.basePath}/${parentPath}/${parentItem._id}/${this.listPath}`;
     }
+
+	protected getChildUrl<TObject extends Model>(parentPath: string, parentItem: TObject) {
+		const path = this.getChildPath(parentPath, parentItem);
+		return `http://${this.hostName}${path}`;
+	}
 
     protected handleError(error: any) {
         console.error(error);
