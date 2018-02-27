@@ -1,0 +1,33 @@
+<nav class="breadcrumb">
+	<a href="/" class="breadcrumb-item">Home</a>
+    <a href="/issues" class="breadcrumb-item active">Issues</a>
+</nav>
+
+<h1>Issues</h1>
+
+<tg-issue-form *ngIf="showForm" [issue]="newIssue" (save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>
+
+<table class="table" *ngIf="!showForm">
+	<thead>
+		<th>Title</th>
+		<th>Volume</th>
+		<th>Issue</th>
+		<th>Published</th>
+	</thead>
+	<tbody>
+	    <tr *ngFor="let issue of issues">
+	        <td>
+				<a href="issue/{{ issue._id }}" (click)="goToDetail($event, issue)">
+					{{ issue.title || '(No Title)' }} <i class="fa fa-angle-right"></i>
+				</a>
+			</td>
+			<td>{{ issue.volumeNumber }}</td>
+			<td>{{ issue.issueNumber }}</td>
+			<td>{{ issue.publishedAt | date:'MMMM d, yyyy' }}</td>
+	    </tr>
+	</tbody>
+</table>
+
+<button class="btn btn-success" *ngIf="!showForm" (click)="toggleForm()">
+	<i class="fa fa-plus"></i> Add New
+</button>

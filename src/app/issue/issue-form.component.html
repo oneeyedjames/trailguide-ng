@@ -1,0 +1,33 @@
+<div class="form-group">
+	<label>Title</label>
+	<input type="text" class="form-control" [(ngModel)]="issueCopy.title">
+</div>
+<div class="form-group">
+	<label>Publication Date</label>
+	<input type="date" class="form-control"
+		[ngModel]="issueCopy.publishedAt | date:'yyyy-MM-dd'"
+		(ngModelChange)="issueCopy.publishedAt = $event">
+</div>
+<div class="row">
+	<div class="col-sm">
+		<div class="form-group">
+			<label>Volume Number</label>
+			<input class="form-control" [(ngModel)]="issueCopy.volumeNumber">
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="form-group">
+			<label>Issue Number</label>
+			<input class="form-control" [(ngModel)]="issueCopy.issueNumber">
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<label>Description</label>
+	<textarea class="form-control" [(ngModel)]="issueCopy.description"></textarea>
+</div>
+<p>
+	<button class="btn btn-primary" (click)="doSave()"><i class="fa fa-save"></i> Save</button>
+	<button class="btn btn-danger" (click)="doDelete()" *ngIf="issueCopy._id"><i class="fa fa-trash"></i> Delete</button>
+	<button class="btn btn-secondary" (click)="doCancel()"><i class="fa fa-ban"></i> Cancel</button>
+</p>

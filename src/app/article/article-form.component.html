@@ -1,0 +1,33 @@
+<div class="form-group">
+	<label>Title</label>
+	<input type="text" class="form-control" [(ngModel)]="articleCopy.title">
+</div>
+<div class="form-group">
+	<label>Publication Date</label>
+	<input type="date" class="form-control"
+		[ngModel]="articleCopy.publishedAt | date:'yyyy-MM-dd'"
+		(ngModelChange)="articleCopy.publishedAt = $event">
+</div>
+<div class="row">
+	<div class="col">
+		<div class="form-group">
+			<label>Bible Reading</label>
+			<input type="text" class="form-control" [(ngModel)]="articleCopy.bibleReading">
+		</div>
+	</div>
+	<div class="col">
+		<div class="form-group">
+			<label>Extra Reading</label>
+			<input type="text" class="form-control" [(ngModel)]="articleCopy.extraReading">
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<label>Content</label>
+	<textarea class="form-control" [(ngModel)]="articleCopy.content"></textarea>
+</div>
+<p>
+	<button class="btn btn-primary" (click)="doSave()"><i class="fa fa-save"></i> Save</button>
+	<button class="btn btn-danger" (click)="doDelete()" *ngIf="articleCopy._id"><i class="fa fa-trash"></i> Delete</button>
+	<button class="btn btn-secondary" (click)="doCancel()"><i class="fa fa-ban"></i> Cancel</button>
+</p>

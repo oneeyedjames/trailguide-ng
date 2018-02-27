@@ -1,0 +1,21 @@
+<div *ngIf="chapter">
+	<h2>Articles</h2>
+	<table class="table" *ngIf="!showForm">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let article of articles">
+				<td>
+					<a href="/article/{{ article._id }}" (click)="goToDetail(article)">{{ article.title || '(No Title)' }}</a>
+				</td>
+				<td>{{ article.publishedAt | date:'MMMM d, yyy' }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-success" *ngIf="!showForm" (click)="toggleForm()"><i class="fa fa-plus"></i> Add New</button>
+	<tg-article-form *ngIf="showForm" [article]="newArticle" (save)="onSave($event)" (cancel)="onCancel()"></tg-article-form>
+</div>

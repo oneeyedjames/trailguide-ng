@@ -1,0 +1,43 @@
+<nav class="breadcrumb">
+	<a href="/" class="breadcrumb-item">Home</a>
+    <!-- <a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">{{ issue.title }}</a> -->
+	<a href="/chapter/{{ chapter._id }}" class="breadcrumb-item" *ngIf="chapter">{{ chapter.title }}</a>
+	<a href="/article/{{ article._id }}" class="breadcrumb-item" *ngIf="article">{{ article.title }}</a>
+</nav>
+
+<div *ngIf="article">
+	<h2>
+		{{ article.publishedAt | date:'EEEE | MM.dd.yy'}}
+		<button class="btn btn-secondary float-right" *ngIf="!showForm" (click)="toggleForm()"><i class="fa fa-edit"></i> Edit</button>
+	</h2>
+	<h1>
+		{{ article.title }}
+		<div class="float-right">{{ article.bibleReading }}</div>
+	</h1>
+	<div *ngIf="!showForm">
+		<div class="row">
+			<div class="col-md-4 col-lg-3">
+				<div class="alert alert-primary">
+					{{ article.content }}
+				</div>
+				<div class="alert alert-secondary">
+					<h3 class="alert-heading"><span style="font-size: 1.3em">X</span>tra Reading</h3>
+					<div>{{ article.extraReading }}</div>
+				</div>
+			</div>
+			<div class="col-md-8 col-lg-9">
+				<div class="form-group" *ngFor="let question of questions; let i = index">
+					<div class="lead">{{ question.heading }}</div>
+					<label for="question-observation">{{ question.keyword }}: {{ question.message }}</label>
+					<textarea id="question-observation" class="form-control" [(ngModel)]="answers[i]"></textarea>
+				</div>
+				<button class="btn btn-primary" (click)="onSaveAnswers()"><i class="fa fa-save"></i> Save</button>
+			</div>
+		</div>
+	</div>
+	<tg-article-form *ngIf="showForm"
+		[article]="article"
+		(save)="onSave($event)"
+		(delete)="goToList()"
+		(cancel)="onCancel()"></tg-article-form>
+</div>

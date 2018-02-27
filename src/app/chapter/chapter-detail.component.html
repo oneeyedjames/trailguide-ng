@@ -1,0 +1,35 @@
+<nav class="breadcrumb">
+	<a href="/" class="breadcrumb-item">Home</a>
+    <a href="/issues" class="breadcrumb-item" (click)="goToList()">Issues</a>
+    <a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">{{ issue.title }}</a>
+	<a href="/issue/{{ issue._id }}/chapters" class="breadcrumb-item" *ngIf="issue">Chapters</a>
+	<a href="/chapter/{{ chapter._id }}" class="breadcrumb-item active" *ngIf="chapter">{{ chapter.title }}</a>
+</nav>
+
+<div *ngIf="chapter">
+    <div class="row">
+		<div class="col-sm-12 col-md-6">
+			<h2>{{ chapter.title }}</h2>
+			<div *ngIf="!showForm">
+				<p>
+					<strong>Date:</strong>
+					{{ chapter.publishedAt | date:'MMMM d, yyyy' }}
+				</p>
+				<p>
+					<strong>Scripture:</strong>
+					{{ chapter.scripture }}
+				</p>
+				<p>{{ chapter.description }}</p>
+				<button class="btn btn-secondary" (click)="toggleForm()"><i class="fa fa-edit"></i> Edit</button>
+			</div>
+			<tg-chapter-form *ngIf="showForm"
+				[chapter]="chapter"
+				(save)="onSave($event)"
+				(delete)="goToList()"
+				(cancel)="onCancel()"></tg-chapter-form>
+		</div>
+		<div class="col-sm-12 col-md-6">
+			<tg-article-list [chapter]="chapter"></tg-article-list>
+		</div>
+	</div>
+</div>
