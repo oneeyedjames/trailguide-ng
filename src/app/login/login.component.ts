@@ -19,14 +19,14 @@ export class LoginComponent {
 
 	private doLogin() {
 		this.loginService.login(this.username, this.password)
-		.then((isSuccess: boolean) => this.loginService.getProfile())
+		.then((isSuccess: boolean) => this.loginService.getUser())
 		.then((user: User) => this.login.emit(user))
 		.catch((error: any) => console.error(error));
 	}
 
 	private doRegister() {
 		this.loginService.register(this.username, this.password)
-		.then((isSuccess: boolean) => this.loginService.getProfile())
+		.then((isSuccess: boolean) => this.loginService.getUser())
 		.then((user: User) => this.login.emit(user))
 		.catch((error: any) => console.error(error));
 	}

@@ -10,7 +10,7 @@
 		<tbody>
 			<tr *ngFor="let article of articles">
 				<td>
-					<a href="/article/{{ article._id }}" (click)="goToDetail(article)">{{ article.title || '(No Title)' }}</a>
+					<a href="/article/{{ article._id }}">{{ article.title || '(No Title)' }}</a>
 				</td>
 				<td>{{ article.publishedAt | date:'MMMM d, yyy':'UTC' }}</td>
 			</tr>

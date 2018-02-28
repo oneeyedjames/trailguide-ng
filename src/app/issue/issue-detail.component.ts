@@ -34,8 +34,7 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    goToList(event: MouseEvent) {
-        event.preventDefault();
+    goToList() {
         this.router.navigate([ '/issues' ]);
     }
 

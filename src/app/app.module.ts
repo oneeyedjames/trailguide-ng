@@ -8,8 +8,8 @@ import { AppComponent }    from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { LoginService }   from './login.service';
-import { LoginComponent } from './login.component';
+import { LoginService }   from './login/login.service';
+import { LoginComponent } from './login/login.component';
 
 import { IssueService }         from './issue/issue.service';
 import { IssueListComponent }   from './issue/issue-list.component';

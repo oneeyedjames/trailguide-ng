@@ -1,5 +1,7 @@
 import { Model } from '../model';
 
+import { Questions } from './questions.model';
+
 export class Article implements Model {
 	_id: string;
 	chapter: string;
@@ -10,5 +12,5 @@ export class Article implements Model {
 	publishedAt: Date;
     createdAt: Date;
     modifiedAt: Date;
-	questions?: Object;
+	questions?: Questions;
 }

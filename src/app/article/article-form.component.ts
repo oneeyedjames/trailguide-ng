@@ -6,6 +6,8 @@ import { Chapter } from '../chapter/chapter.model';
 import { Article }        from './article.model';
 import { ArticleService } from './article.service';
 
+import { Questions, DefaultQuestions } from './questions.model';
+
 @Component({
     selector: 'tg-article-form',
     templateUrl: './article-form.component.html'
@@ -13,6 +15,12 @@ import { ArticleService } from './article.service';
 export class ArticleFormComponent {
 	private articleBind: Article;
 	private articleCopy: Article;
+
+	private questions = DefaultQuestions;
+	private defaultQuestions = DefaultQuestions;
+	private customQuestions = JSON.parse(JSON.stringify(DefaultQuestions));
+
+	private useDefaultQuestions = true;
 
 	@Input()
     set article(article: Article) {
@@ -59,5 +67,11 @@ export class ArticleFormComponent {
 
 	doCancel() {
 		this.cancel.emit(null);
+	}
+
+	toggleUseDefault() {
+		this.questions = this.useDefaultQuestions
+			? this.defaultQuestions
+			: this.customQuestions;
 	}
 }

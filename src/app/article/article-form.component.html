@@ -26,6 +26,41 @@
 	<label>Content</label>
 	<textarea class="form-control" [(ngModel)]="articleCopy.content"></textarea>
 </div>
+<h3>Questions</h3>
+<div class="form-group">
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" [(ngModel)]="useDefaultQuestions" (change)="toggleUseDefault()">
+		<label class="form-check-label">Use Default Questions</label>
+	</div>
+</div>
+<div class="form-group">
+	<label>Observation</label>
+	<input type="text" class="form-control"
+		[disabled]="useDefaultQuestions"
+		[(ngModel)]="questions.observation.message"
+		placeholder="{{ defaultQuestions.observation.message }}">
+</div>
+<div class="form-group">
+	<label>Interpretation</label>
+	<input type="text" class="form-control"
+		[disabled]="useDefaultQuestions"
+		[(ngModel)]="questions.interpretation.message"
+		placeholder="{{ defaultQuestions.interpretation.message }}">
+</div>
+<div class="form-group">
+	<label>Application</label>
+	<input type="text" class="form-control"
+		[disabled]="useDefaultQuestions"
+		[(ngModel)]="questions.application.message"
+		placeholder="{{ defaultQuestions.application.message }}">
+</div>
+<div class="form-group">
+	<label>Implementation</label>
+	<input type="text" class="form-control"
+		[disabled]="useDefaultQuestions"
+		[(ngModel)]="questions.implementation.message"
+		placeholder="{{ defaultQuestions.implementation.message }}">
+</div>
 <p>
 	<button class="btn btn-primary" (click)="doSave()"><i class="fa fa-save"></i> Save</button>
 	<button class="btn btn-danger" (click)="doDelete()" *ngIf="articleCopy._id"><i class="fa fa-trash"></i> Delete</button>

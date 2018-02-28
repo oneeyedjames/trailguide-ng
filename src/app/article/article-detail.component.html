@@ -1,8 +1,8 @@
 <nav class="breadcrumb">
-	<a href="/" class="breadcrumb-item">Home</a>
-    <!-- <a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">{{ issue.title }}</a> -->
-	<a href="/chapter/{{ chapter._id }}" class="breadcrumb-item" *ngIf="chapter">{{ chapter.title }}</a>
-	<a href="/article/{{ article._id }}" class="breadcrumb-item" *ngIf="article">{{ article.title }}</a>
+	<a href="/issues" class="breadcrumb-item">Issues</a>
+    <a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">Issue: {{ issue.title }}</a>
+	<a href="/chapter/{{ chapter._id }}" class="breadcrumb-item" *ngIf="chapter">Chapter: {{ chapter.title }}</a>
+	<a href="/article/{{ article._id }}" class="breadcrumb-item" *ngIf="article">Article: {{ article.title }}</a>
 </nav>
 
 <div *ngIf="article">
@@ -26,10 +26,10 @@
 				</div>
 			</div>
 			<div class="col-md-8 col-lg-9">
-				<div class="form-group" *ngFor="let question of questions; let i = index">
+				<div class="form-group" *ngFor="let question of questionList; let i = index">
 					<div class="lead">{{ question.heading }}</div>
-					<label for="question-observation">{{ question.keyword }}: {{ question.message }}</label>
-					<textarea id="question-observation" class="form-control" [(ngModel)]="answers[i]"></textarea>
+					<label for="question-{{ i }}">{{ question.keyword }}: {{ question.message }}</label>
+					<textarea id="question-{{ i }}" class="form-control" [(ngModel)]="answerList[i]"></textarea>
 				</div>
 				<button class="btn btn-primary" (click)="onSaveAnswers()"><i class="fa fa-save"></i> Save</button>
 			</div>

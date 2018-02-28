@@ -10,7 +10,7 @@
 		<tbody>
 			<tr *ngFor="let chapter of chapters">
 				<td>
-					<a href="/chapter/{{ chapter._id }}" (click)="goToDetail(chapter)">{{ chapter.title || '(No Title)' }}</a>
+					<a href="/chapter/{{ chapter._id }}">{{ chapter.title || '(No Title)' }}</a>
 				</td>
 				<td>{{ chapter.scripture }}</td>
 			</tr>

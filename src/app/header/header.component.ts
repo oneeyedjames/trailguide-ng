@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginService, User } from '../login.service';
+import { LoginService, User } from '../login/login.service';
 
 @Component({
     selector: 'tg-header',
@@ -16,12 +16,8 @@ export class HeaderComponent {
 
 	constructor(private loginService: LoginService, private router: Router) {}
 
-    private goToIssues(event: MouseEvent) {
-        event.preventDefault();
-        this.router.navigate([ '/issues' ]);
-    }
-
 	private doLogout() {
+		event.preventDefault();
 		this.loginService.logout()
 		.then((isSuccess: boolean) => this.logout.emit())
 		.catch((error: any) => console.error(error));

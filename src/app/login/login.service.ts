@@ -48,7 +48,7 @@ export class LoginService {
 		.catch((error: any) => Promise.reject(error.message || error));
     }
 
-	public getProfile(): Promise<User> {
+	public getUser(): Promise<User> {
 		const url = this.getUrl('user/me');
 
 		return this.http.get(url, this.getOptions).toPromise()

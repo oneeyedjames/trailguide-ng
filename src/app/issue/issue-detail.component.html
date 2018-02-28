@@ -1,7 +1,6 @@
 <nav class="breadcrumb">
-	<a href="/" class="breadcrumb-item">Home</a>
-    <a href="/issues" class="breadcrumb-item" (click)="goToList($event)">Issues</a>
-    <a href="/issue/{{ issue._id }}" class="breadcrumb-item active" *ngIf="issue">{{ issue.title }}</a>
+    <a href="/issues" class="breadcrumb-item">Issues</a>
+    <a href="/issue/{{ issue._id }}" class="breadcrumb-item active" *ngIf="issue">Issue: {{ issue.title }}</a>
 </nav>
 
 <div *ngIf="issue">

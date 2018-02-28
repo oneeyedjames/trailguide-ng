@@ -1,5 +1,4 @@
 <nav class="breadcrumb">
-	<a href="/" class="breadcrumb-item">Home</a>
     <a href="/issues" class="breadcrumb-item active">Issues</a>
 </nav>
 
@@ -17,7 +16,7 @@
 	<tbody>
 	    <tr *ngFor="let issue of issues">
 	        <td>
-				<a href="issue/{{ issue._id }}" (click)="goToDetail($event, issue)">
+				<a href="issue/{{ issue._id }}">
 					{{ issue.title || '(No Title)' }} <i class="fa fa-angle-right"></i>
 				</a>
 			</td>

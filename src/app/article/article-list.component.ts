@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Chapter } from '../chapter/chapter.model';
 
@@ -19,19 +18,12 @@ export class ArticleListComponent implements OnInit {
 	newArticle: Article;
 	showForm: boolean;
 
-	constructor(
-		private articleService: ArticleService,
-        private router: Router
-	) {}
+	constructor(private articleService: ArticleService) {}
 
 	ngOnInit() {
 		this.articleService.getChildren('chapter', this.chapter)
 		.then((articles: Article[]) => this.articles = articles);
 	}
-
-    goToDetail(article: Article) {
-        this.router.navigate([ '/article', article._id ]);
-    }
 
 	toggleForm(showForm?: boolean) {
 		if (showForm == undefined)

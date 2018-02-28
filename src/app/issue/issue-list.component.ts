@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Issue } from './issue.model';
 import { IssueService } from './issue.service';
@@ -14,19 +13,11 @@ export class IssueListComponent implements OnInit {
 	newIssue: Issue;
 	showForm: boolean;
 
-	constructor(
-		private issueService: IssueService,
-		private router: Router
-	) {}
+	constructor(private issueService: IssueService) {}
 
 	ngOnInit() {
         this.issueService.getAll()
 		.then((issues: Issue[]) => this.issues = issues);
-	}
-
-	goToDetail(event: MouseEvent, issue: Issue) {
-		event.preventDefault();
-		this.router.navigate([ '/issue', issue._id ]);
 	}
 
 	onSave(issue: Issue) {
