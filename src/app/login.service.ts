@@ -36,6 +36,18 @@ export class LoginService {
 		.catch((error: any) => Promise.reject(error.message || error));
 	}
 
+    public register(username: string, password: string): Promise<boolean> {
+        const url = this.getUrl('register');
+		let data = JSON.stringify({
+			username: username,
+			password: password
+		});
+
+		return this.http.post(url, data, this.postOptions)
+		.toPromise().then((response: Response) => response.ok)
+		.catch((error: any) => Promise.reject(error.message || error));
+    }
+
 	public getProfile(): Promise<User> {
 		const url = this.getUrl('user/me');
 

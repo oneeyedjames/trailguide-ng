@@ -12,7 +12,7 @@
 				<td>
 					<a href="/article/{{ article._id }}" (click)="goToDetail(article)">{{ article.title || '(No Title)' }}</a>
 				</td>
-				<td>{{ article.publishedAt | date:'MMMM d, yyy' }}</td>
+				<td>{{ article.publishedAt | date:'MMMM d, yyy':'UTC' }}</td>
 			</tr>
 		</tbody>
 	</table>

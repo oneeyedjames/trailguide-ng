@@ -1,6 +1,6 @@
 <nav class="breadcrumb">
 	<a href="/" class="breadcrumb-item">Home</a>
-    <a href="/issues" class="breadcrumb-item" (click)="goToList()">Issues</a>
+    <a href="/issues" class="breadcrumb-item" (click)="goToList($event)">Issues</a>
     <a href="/issue/{{ issue._id }}" class="breadcrumb-item active" *ngIf="issue">{{ issue.title }}</a>
 </nav>
 
@@ -13,7 +13,7 @@
 				<p class="small">
 					Volume {{ issue.volumeNumber }},
 					Issue {{ issue.issueNumber }},
-					{{ issue.publishedAt | date:'MMMM d, y' }}
+					{{ issue.publishedAt | date:'MMMM d, y':'UTC' }}
 				</p>
 		        <p>{{ issue.description }}</p>
 				<button class="btn btn-secondary" (click)="toggleForm()">

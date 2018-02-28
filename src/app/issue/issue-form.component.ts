@@ -14,14 +14,6 @@ export class IssueFormComponent {
 
 	@Input()
 	set issue(issue: Issue) {
-		let date = new Date(issue.publishedAt);
-
-		issue.publishedAt = new Date(
-			date.getUTCFullYear(),
-			date.getUTCMonth(),
-			date.getUTCDate()
-		);
-
 		this.issueBind = issue;
 		this.issueCopy = JSON.parse(JSON.stringify(issue));
 	}

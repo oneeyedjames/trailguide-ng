@@ -26,9 +26,7 @@ export class ArticleListComponent implements OnInit {
 
 	ngOnInit() {
 		this.articleService.getChildren('chapter', this.chapter)
-		.then((articles: Article[]) => {
-			this.articles = articles;
-		});
+		.then((articles: Article[]) => this.articles = articles);
 	}
 
     goToDetail(article: Article) {

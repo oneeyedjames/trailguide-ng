@@ -26,17 +26,7 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.sub = this.route.params.subscribe((params: Params) => {
             this.issueService.getOne(params['id'])
-                .then((issue: Issue) => {
-                    let date = new Date(issue.publishedAt);
-
-                    issue.publishedAt = new Date(
-                        date.getUTCFullYear(),
-                        date.getUTCMonth(),
-                        date.getUTCDate()
-                    );
-
-                    this.issue = issue;
-                });
+            .then((issue: Issue) => this.issue = issue);
         });
     }
 
@@ -44,7 +34,8 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    goToList() {
+    goToList(event: MouseEvent) {
+        event.preventDefault();
         this.router.navigate([ '/issues' ]);
     }
 

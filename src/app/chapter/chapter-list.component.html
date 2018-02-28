@@ -4,7 +4,7 @@
 		<thead>
 			<tr>
 				<th>Title</th>
-				<th>Publish Date</th>
+				<th>Scripture</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -12,7 +12,7 @@
 				<td>
 					<a href="/chapter/{{ chapter._id }}" (click)="goToDetail(chapter)">{{ chapter.title || '(No Title)' }}</a>
 				</td>
-				<td>{{ chapter.publishedAt | date:'MMMM d, yyyy' }}</td>
+				<td>{{ chapter.scripture }}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -55,16 +55,7 @@ export class ArticleDetailComponent {
 		this.sub = this.route.params.subscribe((params: Params) => {
 			this.articleService.getOne(params['id'])
 			.then((article: Article) => {
-				let date = new Date(article.publishedAt);
-
-				article.publishedAt = new Date(
-					date.getUTCFullYear(),
-					date.getUTCMonth(),
-					date.getUTCDate()
-				);
-
 				this.article = article;
-
 				return this.chapterService.getOne(article.chapter);
 			}).then((chapter: Chapter) => {
 				this.chapter = chapter;

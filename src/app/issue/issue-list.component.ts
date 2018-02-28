@@ -1,32 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Issue }        from './issue.model';
+import { Issue } from './issue.model';
 import { IssueService } from './issue.service';
 
 @Component({
-    selector: 'tg-issue-list',
-    templateUrl: './issue-list.component.html'
+	selector: 'tg-issue-list',
+	templateUrl: './issue-list.component.html'
 })
 export class IssueListComponent implements OnInit {
-    issues: Issue[];
+	issues: Issue[];
 
-    newIssue: Issue;
-    showForm: boolean;
+	newIssue: Issue;
+	showForm: boolean;
 
-    constructor(
-        private issueService: IssueService,
-        private router: Router
-    ) {}
+	constructor(
+		private issueService: IssueService,
+		private router: Router
+	) {}
 
-    ngOnInit() {
-        this.issueService.getAll().then(issues => this.issues = issues);
-    }
+	ngOnInit() {
+        this.issueService.getAll()
+		.then((issues: Issue[]) => this.issues = issues);
+	}
 
-    goToDetail(event: MouseEvent, issue: Issue) {
+	goToDetail(event: MouseEvent, issue: Issue) {
 		event.preventDefault();
-        this.router.navigate([ '/issue', issue._id ]);
-    }
+		this.router.navigate([ '/issue', issue._id ]);
+	}
 
 	onSave(issue: Issue) {
 		this.issues.push(issue);
@@ -37,11 +38,11 @@ export class IssueListComponent implements OnInit {
 		this.toggleForm(false);
 	}
 
-    toggleForm(showForm?: boolean) {
+	toggleForm(showForm?: boolean) {
 		if (showForm == undefined)
 			showForm = !this.showForm;
 
-        if (this.showForm = showForm)
-            this.newIssue = new Issue();
-    }
+		if (this.showForm = showForm)
+			this.newIssue = new Issue();
+	}
 }

@@ -23,7 +23,7 @@
 			</td>
 			<td>{{ issue.volumeNumber }}</td>
 			<td>{{ issue.issueNumber }}</td>
-			<td>{{ issue.publishedAt | date:'MMMM d, yyyy' }}</td>
+			<td>{{ issue.publishedAt | date:'MMMM d, yyyy':'UTC' }}</td>
 	    </tr>
 	</tbody>
 </table>

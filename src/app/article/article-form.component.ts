@@ -16,14 +16,6 @@ export class ArticleFormComponent {
 
 	@Input()
     set article(article: Article) {
-		let date = new Date(article.publishedAt);
-
-		article.publishedAt = new Date(
-			date.getUTCFullYear(),
-			date.getUTCMonth(),
-			date.getUTCDate()
-		);
-
 		this.articleBind = article;
 		this.articleCopy = JSON.parse(JSON.stringify(article));
 	}

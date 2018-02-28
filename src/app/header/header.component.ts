@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { LoginService, User } from '../login.service';
 
@@ -13,7 +14,12 @@ export class HeaderComponent {
 	@Output()
 	logout = new EventEmitter<any>();
 
-	constructor(private loginService: LoginService) {}
+	constructor(private loginService: LoginService, private router: Router) {}
+
+    private goToIssues(event: MouseEvent) {
+        event.preventDefault();
+        this.router.navigate([ '/issues' ]);
+    }
 
 	private doLogout() {
 		this.loginService.logout()

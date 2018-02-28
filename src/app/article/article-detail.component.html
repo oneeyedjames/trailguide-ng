@@ -7,7 +7,7 @@
 
 <div *ngIf="article">
 	<h2>
-		{{ article.publishedAt | date:'EEEE | MM.dd.yy'}}
+		{{ article.publishedAt | date:'EEEE | MM.dd.yy':'UTC'}}
 		<button class="btn btn-secondary float-right" *ngIf="!showForm" (click)="toggleForm()"><i class="fa fa-edit"></i> Edit</button>
 	</h2>
 	<h1>

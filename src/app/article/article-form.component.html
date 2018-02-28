@@ -5,7 +5,7 @@
 <div class="form-group">
 	<label>Publication Date</label>
 	<input type="date" class="form-control"
-		[ngModel]="articleCopy.publishedAt | date:'yyyy-MM-dd'"
+		[ngModel]="articleCopy.publishedAt | date:'yyyy-MM-dd':'UTC'"
 		(ngModelChange)="articleCopy.publishedAt = $event">
 </div>
 <div class="row">

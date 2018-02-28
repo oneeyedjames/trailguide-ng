@@ -13,7 +13,7 @@
 			<div *ngIf="!showForm">
 				<p>
 					<strong>Date:</strong>
-					{{ chapter.publishedAt | date:'MMMM d, yyyy' }}
+					{{ chapter.publishedAt | date:'MMMM d, yyyy':'UTC' }}
 				</p>
 				<p>
 					<strong>Scripture:</strong>

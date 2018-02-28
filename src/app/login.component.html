@@ -3,7 +3,8 @@
 	<div class="col">
 		<div class="card">
 			<div class="card-body">
-				<h3 class="card-title">Login to Your Account</h3>
+				<h3 class="card-title" *ngIf="!register">Login to Your Account</h3>
+				<h3 class="card-title" *ngIf="register">Register Your Account</h3>
 				<div class="form-group">
 					<label for="login-username">Username</label>
 					<input id="login-username" class="form-control" [(ngModel)]="username">
@@ -12,7 +13,14 @@
 					<label for="login-password">Password</label>
 					<input id="login-password" class="form-control" [(ngModel)]="password" type="password">
 				</div>
-				<button class="btn btn-primary" (click)="doLogin()"><i class="fa fa-sign-in-alt"></i> Login</button>
+				<div *ngIf="!register">
+					<button class="btn btn-primary" (click)="doLogin()"><i class="fa fa-sign-in-alt"></i> Login</button>
+					<button class="btn btn-link" (click)="toggleRegister()">Register</button>
+				</div>
+				<div *ngIf="register">
+					<button class="btn btn-primary" (click)="doRegister()"><i class="fa fa-check"></i> Register</button>
+					<button class="btn btn-secondary" (click)="toggleRegister()"><i class="fa fa-ban"></i> Cancel</button>
+				</div>
 			</div>
 		</div>
 	</div>

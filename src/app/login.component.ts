@@ -10,6 +10,8 @@ export class LoginComponent {
 	private username: string;
 	private password: string;
 
+	private register: boolean;
+
 	@Output()
 	login = new EventEmitter<User>();
 
@@ -17,11 +19,19 @@ export class LoginComponent {
 
 	private doLogin() {
 		this.loginService.login(this.username, this.password)
-		.then((isSuccess: boolean) => {
-			this.loginService.getProfile()
-			.then((user: User) => this.login.emit(user))
-			.catch((error: any) => console.error(error));
-		})
+		.then((isSuccess: boolean) => this.loginService.getProfile())
+		.then((user: User) => this.login.emit(user))
 		.catch((error: any) => console.error(error));
+	}
+
+	private doRegister() {
+		this.loginService.register(this.username, this.password)
+		.then((isSuccess: boolean) => this.loginService.getProfile())
+		.then((user: User) => this.login.emit(user))
+		.catch((error: any) => console.error(error));
+	}
+
+	private toggleRegister() {
+		this.register = !this.register;
 	}
 }

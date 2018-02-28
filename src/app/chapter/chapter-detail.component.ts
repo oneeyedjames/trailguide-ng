@@ -32,16 +32,7 @@ export class ChapterDetailComponent {
 		this.sub = this.route.params.subscribe((params: Params) => {
 			this.chapterService.getOne(params['id'])
 			.then((chapter: Chapter) => {
-				let date = new Date(chapter.publishedAt);
-
-				chapter.publishedAt = new Date(
-					date.getUTCFullYear(),
-					date.getUTCMonth(),
-					date.getUTCDate()
-				);
-
 				this.chapter = chapter;
-
 				return this.issueService.getOne(chapter.issue);
 			}).then((issue: Issue) => {
 				this.issue = issue;

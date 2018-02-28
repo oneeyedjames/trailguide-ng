@@ -16,14 +16,6 @@ export class ChapterFormComponent {
 
 	@Input()
     set chapter(chapter: Chapter) {
-		let date = new Date(chapter.publishedAt);
-
-		chapter.publishedAt = new Date(
-			date.getUTCFullYear(),
-			date.getUTCMonth(),
-			date.getUTCDate()
-		);
-
 		this.chapterBind = chapter;
 		this.chapterCopy = JSON.parse(JSON.stringify(chapter));
 	}
@@ -39,7 +31,7 @@ export class ChapterFormComponent {
 
 	constructor (
         private chapterService: ChapterService,
-         private router: Router
+        private router: Router
     ) {}
 
 	doSave() {
