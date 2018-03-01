@@ -1,7 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { Issue } from '../issue/issue.model';
 
 import { Chapter }        from './chapter.model';
 import { ChapterService } from './chapter.service';
@@ -11,12 +8,12 @@ import { ChapterService } from './chapter.service';
     templateUrl: './chapter-form.component.html'
 })
 export class ChapterFormComponent {
-	private chapterBind: Chapter;
+	private chapterOrig: Chapter;
 	private chapterCopy: Chapter;
 
 	@Input()
     set chapter(chapter: Chapter) {
-		this.chapterBind = chapter;
+		this.chapterOrig = chapter;
 		this.chapterCopy = JSON.parse(JSON.stringify(chapter));
 	}
 
@@ -29,10 +26,7 @@ export class ChapterFormComponent {
 	@Output()
 	cancel = new EventEmitter<any>();
 
-	constructor (
-        private chapterService: ChapterService,
-        private router: Router
-    ) {}
+	constructor (private chapterService: ChapterService) {}
 
 	doSave() {
 		this.chapterCopy.publishedAt = new Date(this.chapterCopy.publishedAt);
@@ -58,6 +52,7 @@ export class ChapterFormComponent {
 	}
 
 	doCancel() {
+		this.chapter = this.chapterOrig;
 		this.cancel.emit(null);
 	}
 }

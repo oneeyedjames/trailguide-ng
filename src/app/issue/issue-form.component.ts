@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Issue }		from './issue.model';
 import { IssueService } from './issue.service';
@@ -9,12 +8,12 @@ import { IssueService } from './issue.service';
 	templateUrl: './issue-form.component.html'
 })
 export class IssueFormComponent {
-	private issueBind: Issue;
+	private issueOrig: Issue;
 	private issueCopy: Issue;
 
 	@Input()
 	set issue(issue: Issue) {
-		this.issueBind = issue;
+		this.issueOrig = issue;
 		this.issueCopy = JSON.parse(JSON.stringify(issue));
 	}
 
@@ -27,11 +26,7 @@ export class IssueFormComponent {
 	@Output()
 	cancel = new EventEmitter<any>();
 
-	constructor(
-		private issueService: IssueService,
-		private router: Router,
-		private route: ActivatedRoute
-	) {}
+	constructor(private issueService: IssueService) {}
 
 	private doSave() {
 		this.issueCopy.publishedAt = new Date(this.issueCopy.publishedAt);
@@ -57,7 +52,7 @@ export class IssueFormComponent {
 	}
 
 	private doCancel() {
-		this.issueCopy = JSON.parse(JSON.stringify(this.issueBind));
+		this.issue = this.issueOrig;
 		this.cancel.emit(null);
 	}
 }

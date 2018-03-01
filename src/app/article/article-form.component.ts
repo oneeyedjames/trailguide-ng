@@ -1,7 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { Chapter } from '../chapter/chapter.model';
 
 import { Article }        from './article.model';
 import { ArticleService } from './article.service';
@@ -13,7 +10,7 @@ import { Questions, DefaultQuestions } from './questions.model';
     templateUrl: './article-form.component.html'
 })
 export class ArticleFormComponent {
-	private articleBind: Article;
+	private articleOrig: Article;
 	private articleCopy: Article;
 
 	private questions = DefaultQuestions;
@@ -24,7 +21,7 @@ export class ArticleFormComponent {
 
 	@Input()
     set article(article: Article) {
-		this.articleBind = article;
+		this.articleOrig = article;
 		this.articleCopy = JSON.parse(JSON.stringify(article));
 	}
 
@@ -37,10 +34,7 @@ export class ArticleFormComponent {
 	@Output()
 	cancel = new EventEmitter<any>();
 
-	constructor (
-        private articleService: ArticleService,
-         private router: Router
-    ) {}
+	constructor (private articleService: ArticleService) {}
 
 	doSave() {
 		this.articleCopy.publishedAt = new Date(this.articleCopy.publishedAt);
@@ -66,6 +60,7 @@ export class ArticleFormComponent {
 	}
 
 	doCancel() {
+		this.article = this.articleOrig;
 		this.cancel.emit(null);
 	}
 
