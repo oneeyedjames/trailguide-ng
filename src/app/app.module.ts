@@ -11,6 +11,10 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginService }   from './login/login.service';
 import { LoginComponent } from './login/login.component';
 
+import { RoleService }       from './role/role.service';
+import { RoleListComponent } from './role/role-list.component';
+import { RoleFormComponent } from './role/role-form.component';
+
 import { IssueService }         from './issue/issue.service';
 import { IssueListComponent }   from './issue/issue-list.component';
 import { IssueDetailComponent } from './issue/issue-detail.component';
@@ -29,6 +33,7 @@ import { ArticleFormComponent }   from './article/article-form.component';
 const AppRoutesModule = RouterModule.forRoot([
     { path: '', redirectTo: '/issues', pathMatch: 'full' },
 	{ path: 'login',       component: LoginComponent },
+	{ path: 'roles',       component: RoleListComponent },
     { path: 'issues',      component: IssueListComponent },
     { path: 'issue/:id',   component: IssueDetailComponent },
     { path: 'chapter/:id', component: ChapterDetailComponent },
@@ -41,6 +46,8 @@ const AppRoutesModule = RouterModule.forRoot([
         HeaderComponent,
         FooterComponent,
 		LoginComponent,
+		RoleListComponent,
+		RoleFormComponent,
         IssueListComponent,
         IssueDetailComponent,
 		IssueFormComponent,
@@ -53,6 +60,7 @@ const AppRoutesModule = RouterModule.forRoot([
     ],
     providers: [
 		LoginService,
+		RoleService,
         IssueService,
         ChapterService,
 		ArticleService

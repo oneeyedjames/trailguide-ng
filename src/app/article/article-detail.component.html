@@ -28,8 +28,8 @@
 			<div class="col-md-8 col-lg-9">
 				<div class="form-group" *ngFor="let question of questionList; let i = index">
 					<div class="lead">{{ question.heading }}</div>
-					<label for="question-{{ i }}">{{ question.keyword }}: {{ question.message }}</label>
-					<textarea id="question-{{ i }}" class="form-control" [(ngModel)]="answerList[i]"></textarea>
+					<label for="question-observation">{{ question.keyword }}: {{ question.message }}</label>
+					<textarea id="question-observation" class="form-control" [(ngModel)]="answerList[i]"></textarea>
 				</div>
 				<button class="btn btn-primary" (click)="onSaveAnswers()"><i class="fa fa-save"></i> Save</button>
 			</div>

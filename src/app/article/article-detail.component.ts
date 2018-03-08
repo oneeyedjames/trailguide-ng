@@ -12,7 +12,7 @@ import { ChapterService } from '../chapter/chapter.service';
 import { Article }		  from './article.model';
 import { ArticleService } from './article.service';
 
-import { Questions, DefaultQuestions } from './questions.model';
+import { Question, Questions, DefaultQuestions } from './questions.model';
 import { Answers } from './answers.model';
 
 @Component({
@@ -27,20 +27,26 @@ export class ArticleDetailComponent {
 	chapter: Chapter;
 	article: Article;
 
+	defaultQuestions = DefaultQuestions;
+
 	showForm: boolean;
 
-	questions = DefaultQuestions;
-	answers = new Answers();
+	get questions(): Questions {
+		return this.article.questions || DefaultQuestions;
+	}
 
-	get questionList() {
+	get questionList(): Question[] {
+		let questions = this.questions;
+
 		return [
-			this.questions.observation,
-			this.questions.interpretation,
-			this.questions.application,
-			this.questions.implementation
+			questions.observation,
+			questions.interpretation,
+			questions.application,
+			questions.implementation
 		];
 	}
 
+	answers = new Answers();
 	answerList: string[] = [];
 
 	constructor (
@@ -93,7 +99,5 @@ export class ArticleDetailComponent {
 		this.answers.interpretation = this.answerList[1];
 		this.answers.application = this.answerList[2];
 		this.answers.implementation = this.answerList[3];
-
-		console.log(this.answers);
 	}
 }

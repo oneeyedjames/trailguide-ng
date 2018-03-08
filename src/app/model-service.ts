@@ -64,7 +64,7 @@ export class ModelService<T extends Model> {
     public getChildren<TObject extends Model>(parentPath: string, parentItem: TObject): Promise<T[]> {
 		const url = this.getChildUrl(parentPath, parentItem);
 
-        return this.http.get(url).toPromise()
+        return this.http.get(url, this.getOptions).toPromise()
             .then((response: Response) => response.json() as T[])
             .catch(this.handleError);
     }

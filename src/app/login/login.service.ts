@@ -3,7 +3,12 @@ import { Http, Response, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-export interface User { username: string }
+import { Role } from '../role/role.model';
+
+export interface User {
+	username: string;
+	roles?: Role[];
+}
 
 @Injectable()
 export class LoginService {

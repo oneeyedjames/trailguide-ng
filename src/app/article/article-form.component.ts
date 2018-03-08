@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { Article }        from './article.model';
 import { ArticleService } from './article.service';
@@ -15,58 +15,66 @@ export class ArticleFormComponent {
 
 	private questions = DefaultQuestions;
 	private defaultQuestions = DefaultQuestions;
-	private customQuestions = JSON.parse(JSON.stringify(DefaultQuestions));
 
 	private useDefaultQuestions = true;
 
 	@Input()
-    set article(article: Article) {
+    public set article(article: Article) {
 		this.articleOrig = article;
 		this.articleCopy = JSON.parse(JSON.stringify(article));
+
+		if (this.articleCopy.questions == null)
+			this.articleCopy.questions = JSON.parse(JSON.stringify(DefaultQuestions));
+
+		this.useDefaultQuestions = article.questions == null;
+		this.toggleUseDefault();
 	}
 
 	@Output()
-	save = new EventEmitter<Article>();
+	public save = new EventEmitter<Article>();
 
 	@Output()
-	delete = new EventEmitter<Article>();
+	public delete = new EventEmitter<Article>();
 
 	@Output()
-	cancel = new EventEmitter<any>();
+	public cancel = new EventEmitter<any>();
 
 	constructor (private articleService: ArticleService) {}
 
-	doSave() {
+	private doSave() {
+		if (this.useDefaultQuestions)
+			this.articleCopy.questions = null;
+
 		this.articleCopy.publishedAt = new Date(this.articleCopy.publishedAt);
 		this.articleService.save(this.articleCopy)
 		.then(this.onSave.bind(this));
 	}
 
-	onSave(article: Article) {
+	private onSave(article: Article) {
 		this.article = article;
 		this.save.emit(article);
 	}
 
-	doDelete() {
+	private doDelete() {
 		if (confirm('Are you sure you want to delete this article?')) {
 			this.articleService.delete(this.articleCopy)
 			.then(this.onDelete.bind(this));
 		}
 	}
 
-	onDelete(article: Article) {
+	private onDelete(article: Article) {
 		this.article = article;
 		this.delete.emit(article);
 	}
 
-	doCancel() {
+	private doCancel() {
 		this.article = this.articleOrig;
 		this.cancel.emit(null);
 	}
 
-	toggleUseDefault() {
+	private toggleUseDefault() {
 		this.questions = this.useDefaultQuestions
 			? this.defaultQuestions
-			: this.customQuestions;
+			: this.articleCopy.questions;
 	}
 }

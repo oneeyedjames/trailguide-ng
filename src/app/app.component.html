@@ -1,4 +1,4 @@
-<tg-header [user]="user" (logout)="onLogout()"></tg-header>
+<tg-header [user]="user" [authorize]="hasPermission" (logout)="onLogout()"></tg-header>
 <div class="container">
 	<router-outlet *ngIf="user"></router-outlet>
 	<tg-login *ngIf="!user" (login)="onLogin($event)"></tg-login>

@@ -31,6 +31,20 @@ export class AppComponent implements OnInit {
 		.catch((error: any) => console.error(error));
 	}
 
+	private hasPermission(action: string, resource: string): boolean {
+		if (this.user == undefined || this.user.roles == undefined)
+			return false;
+
+		for (let role of this.user.roles) {
+			for (let perm of role.permissions) {
+				if (perm.action == action && perm.resource == resource)
+					return true;
+			}
+		}
+
+		return false;
+	}
+
 	private onLogin(user: User) {
 		this.user = user;
 	}

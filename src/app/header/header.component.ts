@@ -11,6 +11,9 @@ export class HeaderComponent {
 	@Input()
 	user: User;
 
+	@Input()
+	authorize: (action: string, resource: string) => boolean;
+
 	@Output()
 	logout = new EventEmitter<any>();
 

@@ -1,0 +1,40 @@
+<nav class="breadcrumb">
+    <a href="/roles" class="breadcrumb-item active">Roles</a>
+</nav>
+
+<h1>Roles</h1>
+
+<tg-role-form *ngIf="showForm" [role]="newRole" (save)="onSave($event)" (cancel)="onCancel()"></tg-role-form>
+
+<table class="table" *ngIf="!showForm">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th *ngFor="let resource of resources">{{ resource }}</th>
+		</tr>
+	</thead>
+	<tbody>
+	    <tr *ngFor="let role of roles">
+	        <th (click)="editRole(role)">{{ role.title }}</th>
+			<td *ngFor="let resource of resources">
+				<div *ngFor="let action of actions">
+					<i class="fa fa-check" *ngIf="hasPermission(role, action, resource); else no_perm"></i>
+					<ng-template #no_perm><i class="fa fa-times"></i></ng-template>
+					{{ action }}
+					<sup class="fa fa-asterisk" *ngIf="hasOverridePermission(role, action, resource)"></sup>
+				</div>
+			</td>
+	    </tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="5" class="small">
+				<i class="fa fa-asterisk"></i> These permissions are granted with override access.
+			</td>
+		</tr>
+	</tfoot>
+</table>
+
+<button class="btn btn-success" *ngIf="!showForm" (click)="toggleForm(true)">
+	<i class="fa fa-plus"></i> Add New
+</button>

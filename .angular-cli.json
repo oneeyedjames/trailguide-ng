@@ -24,7 +24,11 @@
 				"../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
 				"styles.css"
 			],
-			"scripts": [],
+			"scripts": [
+				"../node_modules/jquery/dist/jquery.min.js",
+				"../node_modules/bootstrap/dist/js/bootstrap.min.js",
+				"scripts.js"
+			],
 			"environmentSource": "environments/environment.ts",
 			"environments": {
 				"dev": "environments/environment.ts",

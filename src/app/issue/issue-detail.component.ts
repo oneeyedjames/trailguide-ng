@@ -25,7 +25,7 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.sub = this.route.params.subscribe((params: Params) => {
-            this.issueService.getOne(params['id'])
+            this.issueService.getOne(params.id)
             .then((issue: Issue) => this.issue = issue);
         });
     }
