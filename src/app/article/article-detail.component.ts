@@ -13,7 +13,9 @@ import { Article }		  from './article.model';
 import { ArticleService } from './article.service';
 
 import { Question, Questions, DefaultQuestions } from './questions.model';
-import { Answers } from './answers.model';
+
+import { Reply }        from './reply.model';
+import { ReplyService } from './reply.service';
 
 @Component({
 	selector: 'tg-article-detail',
@@ -26,6 +28,22 @@ export class ArticleDetailComponent {
 	issue: Issue;
 	chapter: Chapter;
 	article: Article;
+	_reply: Reply;
+
+	get reply(): Reply {
+		return this._reply;
+	}
+
+	set reply(reply: Reply) {
+		this._reply = reply;
+
+		this.answerList = [
+			reply.observation,
+			reply.interpretation,
+			reply.application,
+			reply.implementation
+		];
+	}
 
 	defaultQuestions = DefaultQuestions;
 
@@ -46,13 +64,13 @@ export class ArticleDetailComponent {
 		];
 	}
 
-	answers = new Answers();
-	answerList: string[] = [];
+	answerList = [];
 
 	constructor (
 		private issueService: IssueService,
 		private chapterService: ChapterService,
 		private articleService: ArticleService,
+		private replyService: ReplyService,
 		private router: Router,
 		private route: ActivatedRoute
 	) {}
@@ -62,6 +80,11 @@ export class ArticleDetailComponent {
 			this.articleService.getOne(params['id'])
 			.then((article: Article) => {
 				this.article = article;
+
+				this.replyService.getChild<Article>('article', article)
+				.then((reply: Reply) => this.reply = reply)
+				.catch((err: Error) => this.reply = new Reply());
+
 				return this.chapterService.getOne(article.chapter);
 			}).then((chapter: Chapter) => {
 				this.chapter = chapter;
@@ -94,10 +117,14 @@ export class ArticleDetailComponent {
 		this.toggleForm(false);
 	}
 
-	onSaveAnswers() {
-		this.answers.observation = this.answerList[0];
-		this.answers.interpretation = this.answerList[1];
-		this.answers.application = this.answerList[2];
-		this.answers.implementation = this.answerList[3];
+	onSaveReply() {
+		this._reply.article = this.article._id;
+		this._reply.observation = this.answerList[0];
+		this._reply.interpretation = this.answerList[1];
+		this._reply.application = this.answerList[2];
+		this._reply.implementation = this.answerList[3];
+
+		this.replyService.save(this.reply)
+		.then((reply: Reply) => console.log(this.reply = reply));
 	}
 }

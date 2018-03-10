@@ -19,14 +19,14 @@ export class ModelService<T extends Model> {
 
     public getAll(): Promise<T[]> {
         return this.http.get(this.getUrl(), this.getOptions).toPromise()
-            .then((response: Response) => response.json() as T[])
-            .catch(this.handleError);
+        .then((response: Response) => response.json() as T[])
+        .catch(this.handleError);
     }
 
     public getOne(id: string): Promise<T> {
         return this.http.get(this.getUrl(id), this.getOptions).toPromise()
-            .then((response: Response) => response.json() as T)
-            .catch(this.handleError);
+        .then((response: Response) => response.json() as T)
+        .catch(this.handleError);
     }
 
 	public save(item: T): Promise<T> {
@@ -35,20 +35,20 @@ export class ModelService<T extends Model> {
 
     public create(item: T): Promise<T> {
         return this.http.post(this.getUrl(), JSON.stringify(item), this.putOptions)
-            .toPromise().then((response: Response) => response.json() as T)
-            .catch(this.handleError);
+        .toPromise().then((response: Response) => response.json() as T)
+        .catch(this.handleError);
     }
 
     public update(item: T): Promise<T> {
         return this.http.put(this.getUrl(item._id), JSON.stringify(item), this.putOptions)
-            .toPromise().then((response: Response) => response.json() as T)
-            .catch(this.handleError);
+        .toPromise().then((response: Response) => response.json() as T)
+        .catch(this.handleError);
     }
 
     public delete(item: T): Promise<T> {
         return this.http.delete(this.getUrl(item._id), this.getOptions)
-			.toPromise().then((response: Response) => item)
-            .catch(this.handleError);
+		.toPromise().then((response: Response) => item)
+        .catch(this.handleError);
     }
 
     protected getPath(id?: string): string {
@@ -61,20 +61,28 @@ export class ModelService<T extends Model> {
 		return 'http://' + this.hostName + this.getPath(id);
 	}
 
+	public getChild<TObject extends Model>(parentPath: string, parentItem: TObject): Promise<T> {
+		const url = `http://${this.hostName}${this.basePath}/${parentPath}/${parentItem._id}/${this.itemPath}`;
+
+		return this.http.get(url, this.getOptions).toPromise()
+		.then((response: Response) => response.json() as T)
+		.catch(this.handleError);
+	}
+
     public getChildren<TObject extends Model>(parentPath: string, parentItem: TObject): Promise<T[]> {
 		const url = this.getChildUrl(parentPath, parentItem);
 
         return this.http.get(url, this.getOptions).toPromise()
-            .then((response: Response) => response.json() as T[])
-            .catch(this.handleError);
+        .then((response: Response) => response.json() as T[])
+        .catch(this.handleError);
     }
 
     public createChild<TObject extends Model>(parentPath: string, parentItem: TObject, item: T): Promise<T> {
         const url = this.getChildUrl(parentPath, parentItem);
 
         return this.http.post(url, JSON.stringify(item), this.putOptions)
-            .toPromise().then((response: Response) => response.json() as T)
-            .catch(this.handleError);
+        .toPromise().then((response: Response) => response.json() as T)
+        .catch(this.handleError);
     }
 
     protected getChildPath<TObject extends Model>(parentPath: string, parentItem: TObject) {

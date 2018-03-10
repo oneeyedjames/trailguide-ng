@@ -30,6 +30,8 @@ import { ArticleListComponent }   from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
 import { ArticleFormComponent }   from './article/article-form.component';
 
+import { ReplyService } from './article/reply.service';
+
 const AppRoutesModule = RouterModule.forRoot([
     { path: '', redirectTo: '/issues', pathMatch: 'full' },
 	{ path: 'login',       component: LoginComponent },
@@ -63,7 +65,8 @@ const AppRoutesModule = RouterModule.forRoot([
 		RoleService,
         IssueService,
         ChapterService,
-		ArticleService
+		ArticleService,
+        ReplyService
     ],
     imports: [
         BrowserModule,
