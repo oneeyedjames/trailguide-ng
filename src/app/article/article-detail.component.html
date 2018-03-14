@@ -1,6 +1,6 @@
 <nav class="breadcrumb">
 	<a href="/issues" class="breadcrumb-item">Issues</a>
-    <a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">Issue: {{ issue.title }}</a>
+	<a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">Issue: {{ issue.title }}</a>
 	<a href="/chapter/{{ chapter._id }}" class="breadcrumb-item" *ngIf="chapter">Chapter: {{ chapter.title }}</a>
 	<a href="/article/{{ article._id }}" class="breadcrumb-item" *ngIf="article">Article: {{ article.title }}</a>
 </nav>

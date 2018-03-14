@@ -1,5 +1,5 @@
 <nav class="breadcrumb">
-    <a href="/issues" class="breadcrumb-item active">Issues</a>
+	<a href="/issues" class="breadcrumb-item active">Issues</a>
 </nav>
 
 <h1>Issues</h1>
@@ -14,8 +14,8 @@
 		<th>Published</th>
 	</thead>
 	<tbody>
-	    <tr *ngFor="let issue of issues">
-	        <td>
+		<tr *ngFor="let issue of issues">
+			<td>
 				<a href="issue/{{ issue._id }}">
 					{{ issue.title || '(No Title)' }} <i class="fa fa-angle-right"></i>
 				</a>
@@ -23,7 +23,7 @@
 			<td>{{ issue.volumeNumber }}</td>
 			<td>{{ issue.issueNumber }}</td>
 			<td>{{ issue.publishedAt | date:'MMMM d, yyyy':'UTC' }}</td>
-	    </tr>
+		</tr>
 	</tbody>
 </table>
 

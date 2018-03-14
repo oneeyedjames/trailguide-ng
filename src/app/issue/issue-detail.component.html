@@ -1,6 +1,6 @@
 <nav class="breadcrumb">
-    <a href="/issues" class="breadcrumb-item">Issues</a>
-    <a href="/issue/{{ issue._id }}" class="breadcrumb-item active" *ngIf="issue">Issue: {{ issue.title }}</a>
+	<a href="/issues" class="breadcrumb-item">Issues</a>
+	<a href="/issue/{{ issue._id }}" class="breadcrumb-item active" *ngIf="issue">Issue: {{ issue.title }}</a>
 </nav>
 
 <div *ngIf="issue">
@@ -8,17 +8,17 @@
 	<div class="row">
 		<div class="col-sm-12 col-md-6">
 			<h2>Details</h2>
-		    <div *ngIf="!showForm">
+			<div *ngIf="!showForm">
 				<p class="small">
 					Volume {{ issue.volumeNumber }},
 					Issue {{ issue.issueNumber }},
 					{{ issue.publishedAt | date:'MMMM d, y':'UTC' }}
 				</p>
-		        <p>{{ issue.description }}</p>
+				<p>{{ issue.description }}</p>
 				<button class="btn btn-secondary" (click)="toggleForm()">
 					<i class="fa fa-edit"></i> Edit
 				</button>
-		    </div>
+			</div>
 			<tg-issue-form *ngIf="showForm"
 				[issue]="issue"
 				(save)="onSave($event)"

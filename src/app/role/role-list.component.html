@@ -1,5 +1,5 @@
 <nav class="breadcrumb">
-    <a href="/roles" class="breadcrumb-item active">Roles</a>
+	<a href="/roles" class="breadcrumb-item active">Roles</a>
 </nav>
 
 <h1>Roles</h1>
@@ -14,8 +14,8 @@
 		</tr>
 	</thead>
 	<tbody>
-	    <tr *ngFor="let role of roles">
-	        <th (click)="editRole(role)">{{ role.title }}</th>
+		<tr *ngFor="let role of roles">
+			<th (click)="editRole(role)">{{ role.title }}</th>
 			<td *ngFor="let resource of resources">
 				<div *ngFor="let action of actions">
 					<i class="fa fa-check" *ngIf="hasPermission(role, action, resource); else no_perm"></i>
@@ -24,7 +24,7 @@
 					<sup class="fa fa-asterisk" *ngIf="hasOverridePermission(role, action, resource)"></sup>
 				</div>
 			</td>
-	    </tr>
+		</tr>
 	</tbody>
 	<tfoot>
 		<tr>

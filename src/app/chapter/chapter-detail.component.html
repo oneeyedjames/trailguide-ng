@@ -1,11 +1,11 @@
 <nav class="breadcrumb">
-    <a href="/issues" class="breadcrumb-item">Issues</a>
-    <a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">Issue: {{ issue.title }}</a>
+	<a href="/issues" class="breadcrumb-item">Issues</a>
+	<a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">Issue: {{ issue.title }}</a>
 	<a href="/chapter/{{ chapter._id }}" class="breadcrumb-item active" *ngIf="chapter">Chapter: {{ chapter.title }}</a>
 </nav>
 
 <div *ngIf="chapter">
-    <div class="row">
+	<div class="row">
 		<div class="col-sm-12 col-md-6">
 			<h2>{{ chapter.title }}</h2>
 			<div *ngIf="!showForm">
