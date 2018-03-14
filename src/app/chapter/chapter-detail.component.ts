@@ -52,8 +52,8 @@ export class ChapterDetailComponent {
 		if (showForm == undefined)
 			showForm = !this.showForm;
 
-        this.showForm = showForm;
-    }
+		this.showForm = showForm;
+	}
 
 	onSave(chapter: Chapter) {
 		this.chapter = chapter;

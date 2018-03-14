@@ -20,8 +20,8 @@ export interface Permission {
 
 export class Role implements Model {
 	_id: string;
-    title: string;
-    description: string;
+	title: string;
+	description: string;
 	permissions: Permission[];
 	createdBy: string;
 	createdAt: Date;

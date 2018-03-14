@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { LoginService, User } from '../login/login.service';
 
 @Component({
-    selector: 'tg-header',
-    templateUrl: './header.component.html'
+	selector: 'tg-header',
+	templateUrl: './header.component.html'
 })
 export class HeaderComponent {
 	@Input()

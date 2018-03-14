@@ -10,7 +10,7 @@ export class Article implements Model {
 	extraReading: string;
 	content: string;
 	publishedAt: Date;
-    createdAt: Date;
-    modifiedAt: Date;
+	createdAt: Date;
+	modifiedAt: Date;
 	questions?: Questions;
 }

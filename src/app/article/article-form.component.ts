@@ -6,8 +6,8 @@ import { ArticleService } from './article.service';
 import { Questions, DefaultQuestions } from './questions.model';
 
 @Component({
-    selector: 'tg-article-form',
-    templateUrl: './article-form.component.html'
+	selector: 'tg-article-form',
+	templateUrl: './article-form.component.html'
 })
 export class ArticleFormComponent {
 	private articleOrig: Article;
@@ -19,7 +19,7 @@ export class ArticleFormComponent {
 	private useDefaultQuestions = true;
 
 	@Input()
-    public set article(article: Article) {
+	public set article(article: Article) {
 		this.articleOrig = article;
 		this.articleCopy = JSON.parse(JSON.stringify(article));
 

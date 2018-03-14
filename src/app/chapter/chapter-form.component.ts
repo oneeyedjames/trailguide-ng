@@ -4,15 +4,15 @@ import { Chapter }        from './chapter.model';
 import { ChapterService } from './chapter.service';
 
 @Component({
-    selector: 'tg-chapter-form',
-    templateUrl: './chapter-form.component.html'
+	selector: 'tg-chapter-form',
+	templateUrl: './chapter-form.component.html'
 })
 export class ChapterFormComponent {
 	private chapterOrig: Chapter;
 	private chapterCopy: Chapter;
 
 	@Input()
-    set chapter(chapter: Chapter) {
+	set chapter(chapter: Chapter) {
 		this.chapterOrig = chapter;
 		this.chapterCopy = JSON.parse(JSON.stringify(chapter));
 	}

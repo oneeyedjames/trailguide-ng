@@ -4,8 +4,8 @@ import { Role, Resources, Actions } from './role.model';
 import { RoleService }              from './role.service';
 
 @Component({
-    selector: 'tg-role-list',
-    templateUrl: './role-list.component.html'
+	selector: 'tg-role-list',
+	templateUrl: './role-list.component.html'
 })
 export class RoleListComponent implements OnInit {
 	private roles: Role[];
@@ -21,7 +21,7 @@ export class RoleListComponent implements OnInit {
 
 	public ngOnInit() {
 		this.roleService.getAll()
-		.then((roles: Role[]) => this.roles = roles);
+		.then((roles: Role[]) => console.log(this.roles = roles));
 	}
 
 	private hasPermission(role: Role, action: string, resource: string): boolean {

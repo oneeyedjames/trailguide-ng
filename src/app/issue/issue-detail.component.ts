@@ -7,43 +7,43 @@ import { Issue }        from './issue.model';
 import { IssueService } from './issue.service';
 
 @Component({
-    selector: 'tg-issue-detail',
-    templateUrl: './issue-detail.component.html'
+	selector: 'tg-issue-detail',
+	templateUrl: './issue-detail.component.html'
 })
 export class IssueDetailComponent implements OnInit, OnDestroy {
-    private sub: Subscription;
+	private sub: Subscription;
 
-    issue: Issue;
+	issue: Issue;
 
-    showForm: boolean;
+	showForm: boolean;
 
-    constructor(
-        private issueService: IssueService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) {}
+	constructor(
+		private issueService: IssueService,
+		private router: Router,
+		private route: ActivatedRoute
+	) {}
 
-    ngOnInit() {
-        this.sub = this.route.params.subscribe((params: Params) => {
-            this.issueService.getOne(params.id)
-            .then((issue: Issue) => this.issue = issue);
-        });
-    }
+	ngOnInit() {
+		this.sub = this.route.params.subscribe((params: Params) => {
+			this.issueService.getOne(params.id)
+			.then((issue: Issue) => this.issue = issue);
+		});
+	}
 
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
+	ngOnDestroy() {
+		this.sub.unsubscribe();
+	}
 
-    goToList() {
-        this.router.navigate([ '/issues' ]);
-    }
+	goToList() {
+		this.router.navigate([ '/issues' ]);
+	}
 
-    toggleForm(showForm?: boolean) {
+	toggleForm(showForm?: boolean) {
 		if (showForm == undefined)
 			showForm = !this.showForm;
 
-        this.showForm = showForm;
-    }
+		this.showForm = showForm;
+	}
 
 	onSave(issue: Issue) {
 		this.issue = issue;

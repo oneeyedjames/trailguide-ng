@@ -105,8 +105,8 @@ export class ArticleDetailComponent {
 		if (showForm == undefined)
 			showForm = !this.showForm;
 
-        this.showForm = showForm;
-    }
+		this.showForm = showForm;
+	}
 
 	onSave(article: Article) {
 		this.article = article;

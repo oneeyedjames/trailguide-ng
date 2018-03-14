@@ -10,5 +10,5 @@ export class Reply implements Model {
 	createdBy: string;
 	createdAt: Date;
 	modifiedBy: string;
-    modifiedAt: Date;
+	modifiedAt: Date;
 }

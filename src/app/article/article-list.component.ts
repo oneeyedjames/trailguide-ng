@@ -6,8 +6,8 @@ import { Article }        from './article.model';
 import { ArticleService } from './article.service';
 
 @Component({
-    selector: 'tg-article-list',
-    templateUrl: './article-list.component.html'
+	selector: 'tg-article-list',
+	templateUrl: './article-list.component.html'
 })
 export class ArticleListComponent implements OnInit {
 	@Input()
@@ -29,11 +29,11 @@ export class ArticleListComponent implements OnInit {
 		if (showForm == undefined)
 			showForm = !this.showForm;
 
-        if (this.showForm = showForm) {
-            this.newArticle = new Article();
+		if (this.showForm = showForm) {
+			this.newArticle = new Article();
 			this.newArticle.chapter = this.chapter._id;
 		}
-    }
+	}
 
 	onSave(article: Article) {
 		this.articles.push(article);

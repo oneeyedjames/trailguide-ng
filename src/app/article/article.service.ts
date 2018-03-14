@@ -8,7 +8,7 @@ import { Article } from './article.model';
 
 @Injectable()
 export class ArticleService extends ModelService<Article> {
-    constructor(protected http: Http) {
-        super(http, 'articles', 'article');
-    }
+	constructor(protected http: Http) {
+		super(http, 'articles', 'article');
+	}
 }

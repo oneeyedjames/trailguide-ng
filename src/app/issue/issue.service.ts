@@ -7,9 +7,9 @@ import { Issue } from './issue.model';
 
 @Injectable()
 export class IssueService extends ModelService<Issue> {
-    constructor(protected http: Http) {
-        super(http, 'issues', 'issue');
+	constructor(protected http: Http) {
+		super(http, 'issues', 'issue');
 
-        // this.registerRelated('chapter', true);
-    }
+		// this.registerRelated('chapter', true);
+	}
 }

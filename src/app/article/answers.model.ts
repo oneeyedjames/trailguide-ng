@@ -7,7 +7,7 @@ export class Answers implements Model {
 	application: string;
 	implementation: string;
 	createdBy: string;
-    createdAt: Date;
+	createdAt: Date;
 	modifiedBy: string;
-    modifiedAt: Date;
+	modifiedAt: Date;
 }

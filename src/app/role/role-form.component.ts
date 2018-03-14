@@ -4,8 +4,8 @@ import { Role, Permission, Resources, Actions } from './role.model';
 import { RoleService }              from './role.service';
 
 @Component({
-    selector: 'tg-role-form',
-    templateUrl: './role-form.component.html'
+	selector: 'tg-role-form',
+	templateUrl: './role-form.component.html'
 })
 export class RoleFormComponent {
 	private roleOrig: Role;

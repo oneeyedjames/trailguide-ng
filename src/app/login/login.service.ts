@@ -12,7 +12,7 @@ export interface User {
 
 @Injectable()
 export class LoginService {
-    protected headers = new Headers({ 'Content-Type': 'application/json' });
+	protected headers = new Headers({ 'Content-Type': 'application/json' });
 
 	protected getOptions = { withCredentials: true };
 	protected postOptions = { withCredentials: true, headers: this.headers };
@@ -41,8 +41,8 @@ export class LoginService {
 		.catch((error: any) => Promise.reject(error.message || error));
 	}
 
-    public register(username: string, password: string): Promise<boolean> {
-        const url = this.getUrl('register');
+	public register(username: string, password: string): Promise<boolean> {
+		const url = this.getUrl('register');
 		let data = JSON.stringify({
 			username: username,
 			password: password
@@ -51,7 +51,7 @@ export class LoginService {
 		return this.http.post(url, data, this.postOptions)
 		.toPromise().then((response: Response) => response.ok)
 		.catch((error: any) => Promise.reject(error.message || error));
-    }
+	}
 
 	public getUser(): Promise<User> {
 		const url = this.getUrl('user/me');

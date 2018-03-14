@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { LoginService, User } from './login/login.service';
 
 @Component({
-    selector: 'tg-app',
-    templateUrl: './app.component.html'
+	selector: 'tg-app',
+	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-    title = 'Trail Guide';
+	title = 'Trail Guide';
 
 	user: User;
 
