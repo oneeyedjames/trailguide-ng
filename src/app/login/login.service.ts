@@ -8,6 +8,7 @@ import { Role } from '../role/role.model';
 export interface User {
 	username: string;
 	roles?: Role[];
+	admin: boolean;
 }
 
 @Injectable()

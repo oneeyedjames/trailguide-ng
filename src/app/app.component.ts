@@ -32,7 +32,11 @@ export class AppComponent implements OnInit {
 	}
 
 	private hasPermission(action: string, resource: string): boolean {
-		if (this.user == undefined || this.user.roles == undefined)
+		if (this.user == undefined)
+			return false;
+		else if (this.user.admin)
+			return true;
+		else if (this.user.roles == undefined)
 			return false;
 
 		for (let role of this.user.roles) {
