@@ -21,12 +21,11 @@
 			"styles": [
 				"../node_modules/bootstrap/dist/css/bootstrap.min.css",
 				"../node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css",
+				"../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css",
 				"../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
 				"styles.css"
 			],
 			"scripts": [
-				"../node_modules/jquery/dist/jquery.min.js",
-				"../node_modules/bootstrap/dist/js/bootstrap.min.js",
 				"scripts.js"
 			],
 			"environmentSource": "environments/environment.ts",

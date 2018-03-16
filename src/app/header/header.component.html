@@ -9,6 +9,9 @@
 				<li class="nav-item" *ngIf="authorize('create', 'issue')">
 					<a class="nav-link" href="/issues">Issues</a>
 				</li>
+				<li class="nav-item" *ngIf="authorize('create', 'user')">
+					<a class="nav-link" href="/users">Users</a>
+				</li>
 				<li class="nav-item" *ngIf="authorize('create', 'role')">
 					<a class="nav-link" href="/roles">Roles</a>
 				</li>

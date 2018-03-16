@@ -4,12 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppComponent }    from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { LoginService }   from './login/login.service';
 import { LoginComponent } from './login/login.component';
+
+import { UserService }       from './user/user.service';
+import { UserListComponent } from './user/user-list.component';
+import { UserFormComponent } from './user/user-form.component';
 
 import { RoleService }       from './role/role.service';
 import { RoleListComponent } from './role/role-list.component';
@@ -35,6 +41,7 @@ import { ReplyService } from './article/reply.service';
 const AppRoutesModule = RouterModule.forRoot([
 	{ path: '', redirectTo: '/issues', pathMatch: 'full' },
 	{ path: 'login',       component: LoginComponent },
+	{ path: 'users',       component: UserListComponent },
 	{ path: 'roles',       component: RoleListComponent },
 	{ path: 'issues',      component: IssueListComponent },
 	{ path: 'issue/:id',   component: IssueDetailComponent },
@@ -48,6 +55,8 @@ const AppRoutesModule = RouterModule.forRoot([
 		HeaderComponent,
 		FooterComponent,
 		LoginComponent,
+		UserListComponent,
+		UserFormComponent,
 		RoleListComponent,
 		RoleFormComponent,
 		IssueListComponent,
@@ -62,6 +71,7 @@ const AppRoutesModule = RouterModule.forRoot([
 	],
 	providers: [
 		LoginService,
+		UserService,
 		RoleService,
 		IssueService,
 		ChapterService,
@@ -72,6 +82,7 @@ const AppRoutesModule = RouterModule.forRoot([
 		BrowserModule,
 		FormsModule,
 		HttpModule,
+		NgbModule.forRoot(),
 		AppRoutesModule
 	],
 	bootstrap: [

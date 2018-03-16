@@ -3,7 +3,8 @@ import { Model } from '../model';
 export const Resources = [
 	'issue',
 	'chapter',
-	'article'
+	'article',
+	'reply'
 ];
 
 export const Actions = [

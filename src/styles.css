@@ -3,3 +3,7 @@
 body {
 	padding-top: 4.5rem;
 }
+
+.text-primary, .text-secondary, .text-success, .text-danger {
+	cursor: pointer;
+}
