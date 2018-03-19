@@ -1,35 +1,40 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
 	<div class="container">
-		<a class="navbar-brand" href="/">Trail Guide</a>
+		<a class="navbar-brand" href="/">
+			<i class="fa fa-map-signs"></i> Trail Guide
+		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item" *ngIf="authorize('create', 'issue')">
-					<a class="nav-link" href="/issues">Issues</a>
+					<a class="nav-link" href="/issues">
+						<i class="fa fa-book"></i> Issues
+					</a>
 				</li>
 				<li class="nav-item" *ngIf="authorize('create', 'user')">
-					<a class="nav-link" href="/users">Users</a>
+					<a class="nav-link" href="/users">
+						<i class="fa fa-user"></i> Users
+					</a>
 				</li>
 				<li class="nav-item" *ngIf="authorize('create', 'role')">
-					<a class="nav-link" href="/roles">Roles</a>
+					<a class="nav-link" href="/roles">
+						<i class="fa fa-briefcase"></i> Roles
+					</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav my-2 my-lg-0" *ngIf="user">
-				<li class="nav-item">
-					<a class="nav-link" (click)="doLogout()">
-						<i class="fa fa-sign-out-alt"></i> Logout
+				<li class="nav-item" ngbDropdown>
+					<a class="nav-link" ngbDropdownToggle>
+						<i class="fa fa-user-circle"></i> Hello, {{ user.username }}
 					</a>
-				</li>
-				<!-- <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown">Hello, {{ user.username }}</a>
-					<div class="dropdown-menu">
+					<div class="dropdown-menu" ngbDropdownMenu>
 						<a class="dropdown-item" (click)="doLogout()">
 							<i class="fa fa-sign-out-alt"></i> Logout
 						</a>
 					</div>
-				</li> -->
+				</li>
 			</ul>
 		</div>
 	</div>

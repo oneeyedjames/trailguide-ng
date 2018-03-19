@@ -1,8 +1,17 @@
 <nav class="breadcrumb">
-	<a href="/issues" class="breadcrumb-item active">Issues</a>
+	<a href="/" class="breadcrumb-item">
+		<i class="fa fa-home"></i> Home
+	</a>
 </nav>
 
-<h1>Issues</h1>
+<h2>
+	<i class="fa fa-book"></i> Issues
+	<button class="btn float-right" (click)="toggleForm()"
+		[ngClass]="showForm ? 'btn-secondary' : 'btn-success'">
+		<span *ngIf="!showForm"><i class="fa fa-plus"></i> Add New</span>
+		<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
+	</button>
+</h2>
 
 <tg-issue-form *ngIf="showForm" [issue]="newIssue" (save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>
 
@@ -26,7 +35,3 @@
 		</tr>
 	</tbody>
 </table>
-
-<button class="btn btn-success" *ngIf="!showForm" (click)="toggleForm()">
-	<i class="fa fa-plus"></i> Add New
-</button>

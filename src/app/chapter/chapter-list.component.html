@@ -1,5 +1,12 @@
 <div *ngIf="issue">
-	<h2>Chapters</h2>
+	<h2>
+		<i class="fa fa-calendar-alt"></i> Chapters
+		<button class="btn float-right" (click)="toggleForm()"
+			[ngClass]="showForm ? 'btn-secondary' : 'btn-success'">
+			<span *ngIf="!showForm"><i class="fa fa-plus"></i> Add New</span>
+			<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
+		</button>
+	</h2>
 	<table class="table" *ngIf="!showForm">
 		<thead>
 			<tr>
@@ -16,6 +23,5 @@
 			</tr>
 		</tbody>
 	</table>
-	<button class="btn btn-success" *ngIf="!showForm" (click)="toggleForm()"><i class="fa fa-plus"></i> Add New</button>
 	<tg-chapter-form *ngIf="showForm" [chapter]="newChapter" (save)="onSave($event)" (cancel)="onCancel()"></tg-chapter-form>
 </div>

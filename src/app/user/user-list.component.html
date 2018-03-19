@@ -2,9 +2,17 @@
 	<a href="/users" class="breadcrumb-item active">Users</a>
 </nav>
 
-<h1>Users</h1>
+<h2>
+	<i class="fa fa-user"></i> Users
+	<button class="btn float-right" (click)="toggleForm()"
+		[ngClass]="showForm ? 'btn-secondary' : 'btn-success'">
+		<span *ngIf="!showForm"><i class="fa fa-plus"></i> Add New</span>
+		<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
+	</button>
+</h2>
 
-<tg-user-form *ngIf="showForm" [user]="newUser" (save)="onSave($event)" (cancel)="onCancel()"></tg-user-form>
+<tg-user-form *ngIf="showForm" [user]="newUser"
+	(save)="onSave($event)" (cancel)="onCancel()"></tg-user-form>
 
 <table class="table" *ngIf="!showForm">
 	<thead>
@@ -31,7 +39,3 @@
 		</tr>
 	</tbody>
 </table>
-
-<button class="btn btn-success" *ngIf="!showForm" (click)="toggleForm(true)">
-	<i class="fa fa-plus"></i> Add New
-</button>

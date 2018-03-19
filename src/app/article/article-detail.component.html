@@ -1,17 +1,28 @@
 <nav class="breadcrumb">
-	<a href="/issues" class="breadcrumb-item">Issues</a>
-	<a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">Issue: {{ issue.title }}</a>
-	<a href="/chapter/{{ chapter._id }}" class="breadcrumb-item" *ngIf="chapter">Chapter: {{ chapter.title }}</a>
-	<a href="/article/{{ article._id }}" class="breadcrumb-item" *ngIf="article">Article: {{ article.title }}</a>
+	<a href="/" class="breadcrumb-item">
+		<i class="fa fa-home"></i> Home
+	</a>
+	<a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">
+		<i class="fa fa-book"></i> {{ issue.title }}
+	</a>
+	<a href="/chapter/{{ chapter._id }}" class="breadcrumb-item" *ngIf="chapter">
+		<i class="fa fa-calendar-alt"></i> {{ chapter.title }}
+	</a>
+	<a href="/article/{{ article._id }}" class="breadcrumb-item" *ngIf="article">
+		<i class="fa fa-file-alt"></i> {{ article.title || '(No Title)' }}
+	</a>
 </nav>
 
 <div *ngIf="article">
 	<h2>
 		{{ article.publishedAt | date:'EEEE | MM.dd.yy':'UTC'}}
-		<button class="btn btn-secondary float-right" *ngIf="!showForm" (click)="toggleForm()"><i class="fa fa-edit"></i> Edit</button>
+		<button class="btn btn-secondary float-right" (click)="toggleForm()">
+			<span *ngIf="!showForm"><i class="fa fa-edit"></i> Edit</span>
+			<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
+		</button>
 	</h2>
 	<h1>
-		{{ article.title }}
+		<i class="fa fa-file-alt"></i> {{ article.title }}
 		<div class="float-right">{{ article.bibleReading }}</div>
 	</h1>
 	<div *ngIf="!showForm">

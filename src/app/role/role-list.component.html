@@ -2,9 +2,17 @@
 	<a href="/roles" class="breadcrumb-item active">Roles</a>
 </nav>
 
-<h1>Roles</h1>
+<h2>
+	<i class="fa fa-briefcase"></i> Roles
+	<button class="btn float-right" (click)="toggleForm()"
+		[ngClass]="showForm ? 'btn-secondary' : 'btn-success'">
+		<span *ngIf="!showForm"><i class="fa fa-plus"></i> Add New</span>
+		<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
+	</button>
+</h2>
 
-<tg-role-form *ngIf="showForm" [role]="newRole" (save)="onSave($event)" (cancel)="onCancel()"></tg-role-form>
+<tg-role-form *ngIf="showForm" [role]="newRole"
+	(save)="onSave($event)" (cancel)="onCancel()"></tg-role-form>
 
 <table class="table" *ngIf="!showForm">
 	<thead>
@@ -34,7 +42,3 @@
 		</tr>
 	</tfoot>
 </table>
-
-<button class="btn btn-success" *ngIf="!showForm" (click)="toggleForm(true)">
-	<i class="fa fa-plus"></i> Add New
-</button>
