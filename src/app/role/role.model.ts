@@ -1,4 +1,4 @@
-import { Model } from '../model';
+import { Model } from '../../lib/model';
 
 export const Resources = [
 	'issue',

@@ -15,19 +15,6 @@ import { ChapterService } from './chapter/chapter.service';
 import { ArticleService } from './article/article.service';
 import { ReplyService }   from './article/reply.service';
 
-// const AppRoutesModule = RouterModule.forRoot([
-// 	{ path: '', redirectTo: '/issues', pathMatch: 'full' },
-// 	{ path: 'login',       component: LoginComponent },
-// 	{ path: 'users',       component: UserListComponent },
-// 	{ path: 'roles',       component: RoleListComponent },
-// 	{ path: 'issues',      component: IssueListComponent },
-// 	{ path: 'issue/:id',   component: IssueDetailComponent },
-// 	{ path: 'chapter/:id', component: ChapterDetailComponent },
-// 	{ path: 'article/:id', component: ArticleDetailComponent }
-// ]);
-
-
-
 @NgModule({
 	declarations: [
 		AppComponent

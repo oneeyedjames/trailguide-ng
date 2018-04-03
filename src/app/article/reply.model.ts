@@ -1,4 +1,4 @@
-import { Model } from '../model';
+import { Model } from '../../lib/model';
 
 export class Reply implements Model {
 	_id: string;

@@ -25,9 +25,7 @@
 				"../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
 				"styles.css"
 			],
-			"scripts": [
-				"scripts.js"
-			],
+			"scripts": [],
 			"environmentSource": "environments/environment.ts",
 			"environments": {
 				"dev": "environments/environment.ts",
