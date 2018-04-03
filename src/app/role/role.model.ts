@@ -8,6 +8,7 @@ export const Resources = [
 ];
 
 export const Actions = [
+	'read',
 	'create',
 	'update',
 	'delete'

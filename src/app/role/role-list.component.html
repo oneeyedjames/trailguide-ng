@@ -17,28 +17,32 @@
 <table class="table" *ngIf="!showForm">
 	<thead>
 		<tr>
-			<th>Title</th>
-			<th *ngFor="let resource of resources">{{ resource }}</th>
+			<th>Role</th>
+			<th>Resource</th>
+			<th *ngFor="let action of actions">{{ action }}</th>
 		</tr>
 	</thead>
-	<tbody>
-		<tr *ngFor="let role of roles">
-			<th (click)="editRole(role)">{{ role.title }}</th>
-			<td *ngFor="let resource of resources">
-				<div *ngFor="let action of actions">
-					<i class="fa fa-check" *ngIf="hasPermission(role, action, resource); else no_perm"></i>
-					<ng-template #no_perm><i class="fa fa-times"></i></ng-template>
-					{{ action }}
-					<sup class="fa fa-asterisk" *ngIf="hasOverridePermission(role, action, resource)"></sup>
-				</div>
+	<tbody *ngFor="let role of roles">
+		<tr *ngFor="let resource of resources; let i = index">
+			<td rowspan="4" *ngIf="i == 0">
+				<a class="text-primary" ngbTooltip="Edit" (click)="editRole(role)"><i class="fa fa-edit"></i></a>
+				<a class="text-danger" ngbTooltip="Delete" (click)="deleteRole(role)"><i class="fa fa-trash"></i></a>
+				<strong>{{ role.title }}</strong>
+			</td>
+			<td>{{ resource }}</td>
+			<td *ngFor="let action of actions">
+				<ng-container *ngIf="hasPermission(role, action, resource); else no_perm">
+					<ng-container *ngIf="hasOverridePermission(role, action, resource); else no_over">
+						<i class="fa fa-check text text-success"></i>
+					</ng-container>
+					<ng-template #no_over>
+						<i class="fa fa-asterisk text text-warning"></i>
+					</ng-template>
+				</ng-container>
+				<ng-template #no_perm>
+					<i class="fa fa-times text text-danger"></i>
+				</ng-template>
 			</td>
 		</tr>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="5" class="small">
-				<i class="fa fa-asterisk"></i> These permissions are granted with override access.
-			</td>
-		</tr>
-	</tfoot>
 </table>

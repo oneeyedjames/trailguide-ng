@@ -47,6 +47,10 @@ export class RoleListComponent implements OnInit {
 		this.showForm = true;
 	}
 
+	private deleteRole(role: Role) {
+		
+	}
+
 	private toggleForm(showForm?: boolean) {
 		if (showForm == undefined)
 			showForm = !this.showForm;
