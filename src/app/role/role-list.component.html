@@ -24,7 +24,7 @@
 	</thead>
 	<tbody *ngFor="let role of roles">
 		<tr *ngFor="let resource of resources; let i = index">
-			<td rowspan="4" *ngIf="i == 0">
+			<td rowspan="5" *ngIf="i == 0">
 				<a class="text-primary" ngbTooltip="Edit" (click)="editRole(role)"><i class="fa fa-edit"></i></a>
 				<a class="text-danger" ngbTooltip="Delete" (click)="deleteRole(role)"><i class="fa fa-trash"></i></a>
 				<strong>{{ role.title }}</strong>

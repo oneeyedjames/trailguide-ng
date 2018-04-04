@@ -4,7 +4,8 @@ export const Resources = [
 	'issue',
 	'chapter',
 	'article',
-	'reply'
+	'reply',
+	'purchase'
 ];
 
 export const Actions = [
