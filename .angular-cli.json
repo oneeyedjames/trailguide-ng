@@ -23,8 +23,13 @@
 				"../node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css",
 				"../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css",
 				"../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
-				"styles.css"
+				"styles.scss"
 			],
+			"stylePreprocessorOptions": {
+				"includePaths": [
+					"../node_modules/bootstrap/scss"
+				]
+			},
 			"scripts": [],
 			"environmentSource": "environments/environment.ts",
 			"environments": {
@@ -58,7 +63,7 @@
 		}
 	},
 	"defaults": {
-		"styleExt": "css",
+		"styleExt": "scss",
 		"component": {}
 	}
 }
