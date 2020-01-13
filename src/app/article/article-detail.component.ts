@@ -54,13 +54,11 @@ export class ArticleDetailComponent {
 	}
 
 	get questionList(): Question[] {
-		let questions = this.questions;
-
 		return [
-			questions.observation,
-			questions.interpretation,
-			questions.application,
-			questions.implementation
+			this.questions.observation,
+			this.questions.interpretation,
+			this.questions.application,
+			this.questions.implementation
 		];
 	}
 

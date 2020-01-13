@@ -1,6 +1,6 @@
-import { Model } from '../../lib/model';
+import { ContentModel } from '../content.model';
 
-export class Reply implements Model {
+export class Reply implements ContentModel {
 	_id: string;
 	article: string;
 	observation: string;

@@ -64,6 +64,9 @@
 	},
 	"defaults": {
 		"styleExt": "scss",
-		"component": {}
+		"component": {},
+		"serve": {
+			"host": "trailguide.io"
+		}
 	}
 }

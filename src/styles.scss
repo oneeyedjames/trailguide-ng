@@ -1,5 +1,7 @@
 $all-text-link: 'a.text-primary, a.text-secondary, a.text-info, a.text-success, a.text-danger, a.text-warning, a.text-light, a.text-dark, a.text-muted';
 
-body { padding-top: 4.5rem; }
+html { position: relative; min-height: 100%; }
+
+body { margin: 4.5rem 0; }
 
 #{$all-text-link}, a.btn { cursor: pointer; }

@@ -13,7 +13,7 @@ export class ModelService<T extends Model> {
 	private hostName: string = 'localhost:3000';
 	private basePath: string = '/api/v1';
 
-	constructor(protected http: Http, private listPath: string, private itemPath: string = '') {
+	constructor(protected http: Http, protected listPath: string, protected itemPath: string = '') {
 		this.itemPath = itemPath || listPath;
 	}
 

@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Article }        from './article.model';
 import { ArticleService } from './article.service';
 
-import { Questions, DefaultQuestions } from './questions.model';
+import { Questions, DefaultQuestions, BlankQuestions } from './questions.model';
 
 @Component({
 	selector: 'tg-article-form',
@@ -24,7 +24,7 @@ export class ArticleFormComponent {
 		this.articleCopy = JSON.parse(JSON.stringify(article));
 
 		if (this.articleCopy.questions == null)
-			this.articleCopy.questions = JSON.parse(JSON.stringify(DefaultQuestions));
+			this.articleCopy.questions = JSON.parse(JSON.stringify(BlankQuestions));
 
 		this.useDefaultQuestions = article.questions == null;
 		this.toggleUseDefault();

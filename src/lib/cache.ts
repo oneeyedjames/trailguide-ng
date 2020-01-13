@@ -72,7 +72,7 @@ export class LocalCache {
 		this.cache.clear();
 	}
 
-	public searchDocuments(collection: string, filter: (doc: any, id: string) => boolean) {
+	public searchDocuments(collection: string, filter?: (doc: any, id: string) => boolean) {
 		filter = filter || this.defaultDocumentFilter;
 
 		let docs = [];

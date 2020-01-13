@@ -1,4 +1,4 @@
-import { Model } from '../../lib/model';
+import { ContentModel } from '../content.model';
 
 export const Resources = [
 	'issue',
@@ -21,7 +21,7 @@ export interface Permission {
 	override: boolean;
 }
 
-export class Role implements Model {
+export class Role implements ContentModel {
 	_id: string;
 	title: string;
 	description: string;

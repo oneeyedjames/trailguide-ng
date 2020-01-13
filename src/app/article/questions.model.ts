@@ -33,3 +33,26 @@ export const DefaultQuestions: Questions = {
 		message: 'What do I do?'
 	}
 };
+
+export const BlankQuestions: Questions = {
+	observation: {
+		heading: 'Say What?',
+		keyword: 'Observation',
+		message: ''
+	},
+	interpretation: {
+		heading: 'So What?',
+		keyword: 'Interpretation',
+		message: '',
+	},
+	application: {
+		heading: 'Now What?',
+		keyword: 'Application',
+		message: ''
+	},
+	implementation: {
+		heading: 'Then What?',
+		keyword: 'Implementation',
+		message: ''
+	}
+};

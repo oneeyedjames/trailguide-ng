@@ -27,6 +27,8 @@ import { ArticleListComponent }   from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
 import { ArticleFormComponent }   from './article/article-form.component';
 
+import { QuestionMessagePipe } from './article/question.pipe';
+
 export const AppRoutesModule = RouterModule.forRoot([
 	{ path: '', redirectTo: '/issues', pathMatch: 'full' },
 	{ path: 'login',       component: LoginComponent },
@@ -55,7 +57,8 @@ export const AppRoutesModule = RouterModule.forRoot([
 		ChapterFormComponent,
 		ArticleListComponent,
 		ArticleDetailComponent,
-		ArticleFormComponent
+		ArticleFormComponent,
+		QuestionMessagePipe
 	],
 	imports: [
 		BrowserModule,
@@ -79,6 +82,7 @@ export const AppRoutesModule = RouterModule.forRoot([
 		ChapterFormComponent,
 		ArticleListComponent,
 		ArticleDetailComponent,
+		QuestionMessagePipe
 	]
 })
 export class AppViewsModule {}
