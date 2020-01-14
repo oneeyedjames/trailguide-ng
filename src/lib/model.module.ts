@@ -1,9 +1,13 @@
+import { NgModule, Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Model } from './model';
+export interface Model {
+	_id: string;
+}
 
+@Injectable()
 export class ModelService<T extends Model> {
 	protected headers = new Headers({ 'Content-Type': 'application/json' });
 
@@ -99,3 +103,10 @@ export class ModelService<T extends Model> {
 		return Promise.reject(error.message || error);
 	}
 }
+
+@NgModule({
+	providers: [
+		ModelService
+	]
+})
+export class ModelModule {}
