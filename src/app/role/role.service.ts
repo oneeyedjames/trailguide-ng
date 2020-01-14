@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http }       from '@angular/http';
 
-import { ModelService } from '../../lib/model-service';
+import { ModelService } from '../../lib/model.module';
 
 import { Role } from './role.model';
 

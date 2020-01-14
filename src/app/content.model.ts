@@ -1,4 +1,4 @@
-import { Model } from '../lib/model';
+import { Model } from '../lib/model.module';
 
 export interface ContentModel extends Model {
 	createdBy: string;
