@@ -1,9 +1,11 @@
 import { NgModule }      from '@angular/core';
 import { RouterModule }  from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
+import { MaterialModule } from './material.module';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -61,8 +63,10 @@ export const AppRoutesModule = RouterModule.forRoot([
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		FormsModule,
 		HttpModule,
+		MaterialModule
 	],
 	exports: [
 		HeaderComponent,

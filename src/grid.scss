@@ -1,0 +1,56 @@
+.row {
+	@include clearfix;
+	margin: 0px (-$base-padding);
+}
+
+$all-cols: ();
+
+@for $num from 1 through $grid-columns {
+	$all-cols: append($all-cols, ".col-#{$num}", comma);
+}
+
+$sizes: xs sm md lg;
+
+@each $size in $sizes {
+	@for $num from 1 through $grid-columns {
+		$all-cols: append($all-cols, ".col-#{$size}-#{$num}", comma);
+	}
+}
+
+#{$all-cols} {
+	position: relative;
+	float: left;
+	width: 100%;
+	padding: 0 $base-padding;
+	box-sizing: border-box;
+}
+
+@for $num from 1 through $grid-columns {
+	.col-#{$num}, .col-xs-#{$num} { width: percentage($num / $grid-columns); }
+	.col-push-#{$num}, .col-xs-push-#{$num} { left: percentage($num / $grid-columns); }
+	.col-pull-#{$num}, .col-xs-pull-#{$num} { left: percentage($num / $grid-columns) * -1; }
+}
+
+@media only screen and (min-width: 480px) {
+	@for $num from 1 through $grid-columns {
+		.col-sm-#{$num} { width: percentage($num / $grid-columns); }
+		.col-sm-push-#{$num} { left: percentage($num / $grid-columns); }
+		.col-sm-pull-#{$num} { left: percentage($num / $grid-columns) * -1; }
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	@for $num from 1 through $grid-columns {
+		.col-md-#{$num} { width: percentage($num / $grid-columns); }
+		.col-md-push-#{$num} { left: percentage($num / $grid-columns); }
+		.col-md-pull-#{$num} { left: percentage($num / $grid-columns) * -1; }
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	@for $num from 1 through $grid-columns {
+		.col-lg-#{$num} { width: percentage($num / $grid-columns); }
+		.col-lg-push-#{$num} { left: percentage($num / $grid-columns); }
+		.col-lg-pull-#{$num} { left: percentage($num / $grid-columns) * -1; }
+	}
+}

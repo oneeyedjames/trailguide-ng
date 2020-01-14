@@ -1,5 +1,26 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~@angular/material/theming';
 
+$config: mat-typography-config();
 
+$base-padding: 16px;
+$grid-columns: 12;
 
+body {
+	margin: 0;
+	font-family: mat-font-family($config);
+	font-size: mat-font-size($config, body-1);
+}
+
+.container { margin: $base-padding; }
+.fill-space { flex: 1 1 auto; }
+
+@mixin clearfix {
+	&::after {
+		clear: both;
+		content: "";
+		display: table;
+	}
+}
+
+@import 'grid';
