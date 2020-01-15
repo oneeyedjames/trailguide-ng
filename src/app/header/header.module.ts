@@ -6,9 +6,10 @@ import {
 	MatButtonModule,
 	MatIconModule,
 	MatMenuModule
-} from '@angular/material'
+} from '@angular/material';
 
 import { HeaderComponent } from './header.component';
+export { HeaderComponent } from './header.component';
 
 @NgModule({
 	imports: [

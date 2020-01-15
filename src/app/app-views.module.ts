@@ -8,7 +8,7 @@ import { HttpModule }    from '@angular/http';
 import { MaterialModule } from './material.module';
 import { LinkModule } from '../lib/link.module';
 
-import { LoginComponent }  from './login/login.component';
+import { LoginComponent } from './login/login.module';
 
 import { UserListComponent } from './user/user-list.component';
 import { UserFormComponent } from './user/user-form.component';
@@ -42,7 +42,6 @@ export const AppRoutesModule = RouterModule.forRoot([
 
 @NgModule({
 	declarations: [
-		LoginComponent,
 		UserListComponent,
 		UserFormComponent,
 		RoleListComponent,
@@ -67,7 +66,6 @@ export const AppRoutesModule = RouterModule.forRoot([
 		LinkModule
 	],
 	exports: [
-		LoginComponent,
 		UserListComponent,
 		UserFormComponent,
 		RoleListComponent,

@@ -12,7 +12,7 @@ import { Breadcrumb, BreadcrumbService } from './breadcrumb.service';
 })
 export class BreadcrumbComponent {
 	@Input()
-	links: Link[];
+	links: Link[] = [];
 
 	constructor(
 		private breadcrumbService: BreadcrumbService,

@@ -14,6 +14,7 @@ import { AppComponent }   from './app.component';
 
 import { HeaderModule } from './header/header.module';
 import { BreadcrumbModule } from './breadcrumb/breadcrumb.module';
+import { LoginModule } from './login/login.module';
 
 import { LoginService }   from './login/login.service';
 import { UserService }    from './user/user.service';
@@ -28,7 +29,6 @@ import { ReplyService }   from './article/reply.service';
 		AppComponent
 	],
 	providers: [
-		LoginService,
 		UserService,
 		RoleService,
 		IssueService,
@@ -47,7 +47,8 @@ import { ReplyService }   from './article/reply.service';
 		AppViewsModule,
 		AppRoutesModule,
 		HeaderModule,
-		BreadcrumbModule
+		BreadcrumbModule,
+		LoginModule
 	],
 	bootstrap: [
 		AppComponent
