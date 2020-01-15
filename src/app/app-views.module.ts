@@ -8,8 +8,6 @@ import { HttpModule }    from '@angular/http';
 import { MaterialModule } from './material.module';
 import { LinkModule } from '../lib/link.module';
 
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { LoginComponent }  from './login/login.component';
 
 import { UserListComponent } from './user/user-list.component';
@@ -44,8 +42,6 @@ export const AppRoutesModule = RouterModule.forRoot([
 
 @NgModule({
 	declarations: [
-		HeaderComponent,
-		FooterComponent,
 		LoginComponent,
 		UserListComponent,
 		UserFormComponent,
@@ -71,8 +67,6 @@ export const AppRoutesModule = RouterModule.forRoot([
 		LinkModule
 	],
 	exports: [
-		HeaderComponent,
-		FooterComponent,
 		LoginComponent,
 		UserListComponent,
 		UserFormComponent,

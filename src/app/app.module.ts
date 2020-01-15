@@ -1,5 +1,4 @@
 import { NgModule }      from '@angular/core';
-import { RouterModule }  from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
@@ -13,6 +12,7 @@ import { EventService } from '../lib/event.module';
 import { AppViewsModule, AppRoutesModule } from './app-views.module';
 import { AppComponent }   from './app.component';
 
+import { HeaderModule } from './header/header.module';
 import { BreadcrumbModule } from './breadcrumb/breadcrumb.module';
 
 import { LoginService }   from './login/login.service';
@@ -46,6 +46,7 @@ import { ReplyService }   from './article/reply.service';
 		MatSidenavModule,
 		AppViewsModule,
 		AppRoutesModule,
+		HeaderModule,
 		BreadcrumbModule
 	],
 	bootstrap: [
