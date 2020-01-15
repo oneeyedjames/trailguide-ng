@@ -1,35 +1,19 @@
-<nav class="breadcrumb">
-	<a href="/" class="breadcrumb-item">
-		<i class="fa fa-home"></i> Home
-	</a>
-	<a href="/issue/{{ issue._id }}" class="breadcrumb-item" *ngIf="issue">
-		<i class="fa fa-book"></i> {{ issue.title }}
-	</a>
-</nav>
-
 <div *ngIf="issue">
 	<div class="row">
 		<div class="col-sm-12 col-md-6">
-			<h2>
-				<i class="fa fa-book"></i> {{ issue.title }}
-				<button class="btn btn-secondary float-right" (click)="toggleForm()">
-					<span *ngIf="!showForm"><i class="fa fa-edit"></i> Edit</span>
-					<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
-				</button>
-			</h2>
+			<h2>{{ issue.title }}</h2>
 			<div *ngIf="!showForm">
 				<p class="small">
 					Volume {{ issue.volumeNumber }},
-					Issue {{ issue.issueNumber }},
+					Issue {{ issue.issueNumber }}
+				</p>
+				<p class="small">
 					{{ issue.publishedAt | date:'MMMM d, y':'UTC' }}
 				</p>
 				<p>{{ issue.description }}</p>
 			</div>
-			<tg-issue-form *ngIf="showForm"
-				[issue]="issue"
-				(save)="onSave($event)"
-				(delete)="goToList()"
-				(cancel)="onCancel()"></tg-issue-form>
+			<tg-issue-form *ngIf="showForm" [issue]="issue"
+				(save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>
 		</div>
 		<div class="col-sm-12 col-md-6">
 			<tg-chapter-list [issue]="issue"></tg-chapter-list>

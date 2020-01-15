@@ -1,33 +1,27 @@
-<div class="form-group">
-	<label>Title</label>
-	<input type="text" class="form-control" [(ngModel)]="issueCopy.title">
-</div>
-<div class="form-group">
-	<label>Publication Date</label>
-	<input type="date" class="form-control"
+<mat-form-field>
+	<input matInput placeholder="Title" [(ngModel)]="issueCopy.title">
+</mat-form-field>
+<mat-form-field>
+	<input type="date" matInput placeholder="Publication Date"
 		[ngModel]="issueCopy.publishedAt | date:'yyyy-MM-dd':'UTC'"
 		(ngModelChange)="issueCopy.publishedAt = $event">
-</div>
+</mat-form-field>
 <div class="row">
-	<div class="col-sm">
-		<div class="form-group">
-			<label>Volume Number</label>
-			<input class="form-control" [(ngModel)]="issueCopy.volumeNumber">
-		</div>
+	<div class="col-xs-6 col-md-12">
+		<mat-form-field>
+			<input matInput placeholder="Volume Number" [(ngModel)]="issueCopy.volumeNumber">
+		</mat-form-field>
 	</div>
-	<div class="col-sm">
-		<div class="form-group">
-			<label>Issue Number</label>
-			<input class="form-control" [(ngModel)]="issueCopy.issueNumber">
-		</div>
+	<div class="col-xs-6 col-md-12">
+		<mat-form-field>
+			<input matInput placeholder="Issue Number" [(ngModel)]="issueCopy.issueNumber">
+		</mat-form-field>
 	</div>
 </div>
-<div class="form-group">
-	<label>Description</label>
-	<textarea class="form-control" [(ngModel)]="issueCopy.description"></textarea>
-</div>
+<mat-form-field>
+	<textarea matInput placeholder="Description" [(ngModel)]="issueCopy.description"></textarea>
+</mat-form-field>
 <p>
-	<button class="btn btn-primary" (click)="doSave()"><i class="fa fa-save"></i> Save</button>
-	<button class="btn btn-danger" (click)="doDelete()" *ngIf="issueCopy._id"><i class="fa fa-trash"></i> Delete</button>
-	<button class="btn btn-secondary" (click)="doCancel()"><i class="fa fa-ban"></i> Cancel</button>
+	<button mat-raised-button color="primary" (click)="doSave()">Save</button>
+	<button mat-raised-button (click)="doCancel()">Cancel</button>
 </p>

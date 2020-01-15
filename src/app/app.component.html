@@ -1,6 +1,20 @@
-<tg-header [user]="user" [authorize]="hasPermission" (logout)="onLogout()"></tg-header>
-<div class="container">
-	<router-outlet *ngIf="user"></router-outlet>
-	<tg-login *ngIf="!user" (login)="onLogin($event)"></tg-login>
-</div>
-<!-- <tg-footer></tg-footer> -->
+<tg-header [menuLinks]="contextLinks" (toggle)="sidebarOpen = !sidebarOpen"
+	[user]="user" [authorize]="hasPermission" (logout)="onLogout()"></tg-header>
+<mat-sidenav-container fullscreen>
+	<mat-sidenav mode="push" [(opened)]="sidebarOpen">
+		<mat-nav-list *ngFor="let link of sidebarLinks">
+			<a mat-list-item (click)="doLinkClick(link)">
+				<mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>
+				{{ link.label }}
+			</a>
+		</mat-nav-list>
+	</mat-sidenav>
+	<mat-sidenav-content>
+
+		<div class="container">
+			<!-- <app-breadcrumb [links]="breadcrumbs"></app-breadcrumb> -->
+			<router-outlet *ngIf="user"></router-outlet>
+			<tg-login *ngIf="!user" (login)="onLogin($event)"></tg-login>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>

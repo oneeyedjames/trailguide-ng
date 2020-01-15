@@ -1,37 +1,33 @@
-<nav class="breadcrumb">
-	<a href="/" class="breadcrumb-item">
-		<i class="fa fa-home"></i> Home
-	</a>
-</nav>
+<h2>Issues</h2>
 
-<h2>
-	<i class="fa fa-book"></i> Issues
-	<button class="btn float-right" (click)="toggleForm()"
-		[ngClass]="showForm ? 'btn-secondary' : 'btn-success'">
-		<span *ngIf="!showForm"><i class="fa fa-plus"></i> Add New</span>
-		<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
-	</button>
-</h2>
+<div class="row" *ngIf="!showForm">
+	<div class="col-6" *ngFor="let issue of issues">
+		<mat-card (click)="goToDetail(issue)">
+			<mat-card-header>
+				<mat-card-title>{{ issue.title || '(No Title)' }}</mat-card-title>
+				<mat-card-subtitle>
+					Volume {{ issue.volumeNumber }},
+					Issue {{ issue.issueNumber }}
+				</mat-card-subtitle>
+			</mat-card-header>
+			<mat-card-content>
+				<div>&nbsp;</div>
+			</mat-card-content>
+			<mat-card-actions>
+				<button mat-icon-button>
+					<mat-icon>edit</mat-icon>
+				</button>
+				<button mat-icon-button color="warn">
+					<mat-icon>delete</mat-icon>
+				</button>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</div>
 
-<tg-issue-form *ngIf="showForm" [issue]="newIssue" (save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>
+<button mat-mini-fab *ngIf="!showForm" color="accent" (click)="toggleForm()" class="br">
+	<mat-icon>add</mat-icon>
+</button>
 
-<table class="table" *ngIf="!showForm">
-	<thead>
-		<th>Title</th>
-		<th>Volume</th>
-		<th>Issue</th>
-		<th>Published</th>
-	</thead>
-	<tbody>
-		<tr *ngFor="let issue of issues">
-			<td>
-				<a href="issue/{{ issue._id }}">
-					{{ issue.title || '(No Title)' }} <i class="fa fa-angle-right"></i>
-				</a>
-			</td>
-			<td>{{ issue.volumeNumber }}</td>
-			<td>{{ issue.issueNumber }}</td>
-			<td>{{ issue.publishedAt | date:'MMMM d, yyyy':'UTC' }}</td>
-		</tr>
-	</tbody>
-</table>
+<tg-issue-form *ngIf="showForm" [issue]="newIssue"
+	(save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>

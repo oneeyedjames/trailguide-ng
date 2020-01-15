@@ -4,9 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
-import { AppViewsModule, AppRoutesModule } from './app-views.module';
+import { MatIconModule }    from '@angular/material';
+import { MatListModule }    from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
+import { EventService } from '../lib/event.module';
+
+import { AppViewsModule, AppRoutesModule } from './app-views.module';
 import { AppComponent }   from './app.component';
+
 import { LoginService }   from './login/login.service';
 import { UserService }    from './user/user.service';
 import { RoleService }    from './role/role.service';
@@ -26,12 +32,16 @@ import { ReplyService }   from './article/reply.service';
 		IssueService,
 		ChapterService,
 		ArticleService,
-		ReplyService
+		ReplyService,
+		EventService
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
+		MatIconModule,
+		MatListModule,
+		MatSidenavModule,
 		AppViewsModule,
 		AppRoutesModule
 	],

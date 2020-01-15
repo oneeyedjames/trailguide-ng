@@ -17,14 +17,14 @@ export class IssueFormComponent {
 		this.issueCopy = JSON.parse(JSON.stringify(issue));
 	}
 
-	@Output()
-	save = new EventEmitter<Issue>();
+	@Output('save')
+	saveEvent = new EventEmitter<Issue>();
 
-	@Output()
-	delete = new EventEmitter<Issue>();
+	@Output('delete')
+	deleteEvent = new EventEmitter<Issue>();
 
-	@Output()
-	cancel = new EventEmitter<any>();
+	@Output('cancel')
+	cancelEvent = new EventEmitter<any>();
 
 	constructor(private issueService: IssueService) {}
 
@@ -36,7 +36,7 @@ export class IssueFormComponent {
 
 	private onSave(issue: Issue) {
 		this.issue = issue;
-		this.save.emit(issue);
+		this.saveEvent.emit(issue);
 	}
 
 	private doDelete() {
@@ -48,11 +48,11 @@ export class IssueFormComponent {
 
 	private onDelete(issue: Issue) {
 		this.issue = issue;
-		this.delete.emit(issue);
+		this.deleteEvent.emit(issue);
 	}
 
 	private doCancel() {
 		this.issue = this.issueOrig;
-		this.cancel.emit(null);
+		this.cancelEvent.emit(null);
 	}
 }

@@ -1,5 +1,8 @@
 import { Component, ElementRef, Renderer, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+
+import { EventService } from '../lib/event.module';
+import { Link, LinkService } from '../lib/link.module';
 
 import { LoginService, User } from './login/login.service';
 
@@ -10,17 +13,37 @@ import { LoginService, User } from './login/login.service';
 export class AppComponent implements OnInit {
 	title = 'Trail Guide';
 
+	sidebarOpen = false;
+	sidebarLinks: Link[] = [];
+	contextLinks: Link[] = [];
+
+	private homeLink: Link = { icon: 'home', label: 'Home', action: '/' };
+	private logoutLink: Link = { label: 'Logout', action: () => {} };
+
 	user: User;
 
 	constructor(
 		private loginService: LoginService,
+		private eventService: EventService<Link>,
+		private linkService: LinkService,
 		private router: Router,
 		elementRef: ElementRef,
 		renderer: Renderer
 	) {
+		this.eventService.subscribe((link: Link) => {
+			this.contextLinks.push(link);
+		});
+
 		renderer.listen(elementRef.nativeElement, 'click', (event) => {
 			if (event.target.nodeName == 'A' && event.target.href) {
 				this.onClick(event);
+			}
+		});
+
+		this.router.events.subscribe(e => {
+			if (e instanceof NavigationEnd) {
+				this.sidebarLinks = [this.homeLink, this.logoutLink];
+				this.contextLinks = [];
 			}
 		});
 	}
@@ -29,6 +52,11 @@ export class AppComponent implements OnInit {
 		this.loginService.getUser()
 		.then((user: User) => this.user = user)
 		.catch((error: any) => console.error(error));
+	}
+
+	private doLinkClick(link: Link) {
+		this.sidebarOpen = false;
+		this.linkService.doAction(link);
 	}
 
 	private hasPermission(action: string, resource: string): boolean {

@@ -6,6 +6,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 import { MaterialModule } from './material.module';
+import { LinkModule } from '../lib/link.module';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -66,7 +67,8 @@ export const AppRoutesModule = RouterModule.forRoot([
 		BrowserAnimationsModule,
 		FormsModule,
 		HttpModule,
-		MaterialModule
+		MaterialModule,
+		LinkModule
 	],
 	exports: [
 		HeaderComponent,

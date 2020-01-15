@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Issue } from './issue.model';
 import { IssueService } from './issue.service';
@@ -10,10 +11,10 @@ import { IssueService } from './issue.service';
 export class IssueListComponent implements OnInit {
 	issues: Issue[];
 
-	newIssue: Issue;
+	newIssue: Issue = new Issue();
 	showForm: boolean;
 
-	constructor(private issueService: IssueService) {}
+	constructor(private issueService: IssueService, private router: Router) {}
 
 	ngOnInit() {
 		this.issueService.getAll()
@@ -35,5 +36,9 @@ export class IssueListComponent implements OnInit {
 
 		if (this.showForm = showForm)
 			this.newIssue = new Issue();
+	}
+
+	goToDetail(issue: Issue) {
+		this.router.navigate(['issue', issue._id]);
 	}
 }

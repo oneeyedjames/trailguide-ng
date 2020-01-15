@@ -12,6 +12,8 @@ body {
 	font-size: mat-font-size($config, body-1);
 }
 
+mat-sidenav-container { margin-top: 56px; }
+
 .container { margin: $base-padding; }
 .fill-space { flex: 1 1 auto; }
 
@@ -24,3 +26,13 @@ body {
 }
 
 @import 'grid';
+
+.mat-mini-fab.br {
+	position: absolute;
+	right: 32px;
+	bottom: 32px;
+}
+
+mat-form-field {
+	width: 100%;
+}

@@ -3,6 +3,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { EventService } from '../../lib/event.module';
+import { Link }         from '../../lib/link.module';
+
 import { Issue }        from './issue.model';
 import { IssueService } from './issue.service';
 
@@ -19,11 +22,15 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private issueService: IssueService,
+		private linkService: EventService<Link>,
 		private router: Router,
 		private route: ActivatedRoute
 	) {}
 
 	ngOnInit() {
+		this.linkService.emit({ icon: 'edit', label: 'Edit',
+			action: () => this.toggleForm(true) });
+
 		this.sub = this.route.params.subscribe((params: Params) => {
 			this.issueService.getOne(params.id)
 			.then((issue: Issue) => this.issue = issue);
@@ -34,8 +41,13 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
 		this.sub.unsubscribe();
 	}
 
-	goToList() {
-		this.router.navigate([ '/issues' ]);
+	onSave(issue: Issue) {
+		this.issue = issue;
+		this.toggleForm(false);
+	}
+
+	onCancel() {
+		this.toggleForm(false);
 	}
 
 	toggleForm(showForm?: boolean) {
@@ -45,12 +57,7 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
 		this.showForm = showForm;
 	}
 
-	onSave(issue: Issue) {
-		this.issue = issue;
-		this.toggleForm(false);
-	}
-
-	onCancel() {
-		this.toggleForm(false);
+	goToList() {
+		this.router.navigate(['issues']);
 	}
 }
