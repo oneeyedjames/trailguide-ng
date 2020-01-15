@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Breadcrumb, BreadcrumbService } from '../breadcrumb/breadcrumb.module';
+
 import { Issue } from './issue.model';
 import { IssueService } from './issue.service';
 
@@ -14,11 +16,19 @@ export class IssueListComponent implements OnInit {
 	newIssue: Issue = new Issue();
 	showForm: boolean;
 
-	constructor(private issueService: IssueService, private router: Router) {}
+	constructor(
+		private issueService: IssueService,
+		private breadcrumbService: BreadcrumbService,
+		private router: Router
+	) {}
 
 	ngOnInit() {
 		this.issueService.getAll()
 		.then((issues: Issue[]) => this.issues = issues);
+
+		this.breadcrumbService.emit([
+			{ label: 'Issues', action: 'issues' }
+		]);
 	}
 
 	onSave(issue: Issue) {

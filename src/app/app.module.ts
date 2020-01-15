@@ -13,6 +13,8 @@ import { EventService } from '../lib/event.module';
 import { AppViewsModule, AppRoutesModule } from './app-views.module';
 import { AppComponent }   from './app.component';
 
+import { BreadcrumbModule } from './breadcrumb/breadcrumb.module';
+
 import { LoginService }   from './login/login.service';
 import { UserService }    from './user/user.service';
 import { RoleService }    from './role/role.service';
@@ -43,7 +45,8 @@ import { ReplyService }   from './article/reply.service';
 		MatListModule,
 		MatSidenavModule,
 		AppViewsModule,
-		AppRoutesModule
+		AppRoutesModule,
+		BreadcrumbModule
 	],
 	bootstrap: [
 		AppComponent

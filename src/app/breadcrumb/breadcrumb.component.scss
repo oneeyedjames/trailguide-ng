@@ -1,0 +1,49 @@
+@import '~@angular/material/theming';
+
+@mixin breadcrumb-color($fg-theme, $bg-theme) {
+	background-color: map-get($bg-theme, status-bar);
+
+	.link {
+		color: map-get($fg-theme, disabled-text);
+
+		a, mat-icon {
+			color: map-get($fg-theme, secondary-text);
+		}
+	}
+}
+
+.breadcrumb {
+	padding: 8px 16px;
+	border-radius: 4px;
+
+	@include breadcrumb-color($mat-light-theme-foreground, $mat-light-theme-background);
+
+	.link {
+		padding-right: 16px;
+
+		a { text-decoration: none; }
+
+		mat-icon {
+			vertical-align: bottom !important;
+			margin-right: 4px;
+			font-size: 16px;
+			height: 16px;
+			width: 16px;
+		}
+
+		&::after {
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			content: '/';
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		&:last-child {
+			padding-right: 0;
+
+			&::after { content: none; }
+		}
+	}
+}

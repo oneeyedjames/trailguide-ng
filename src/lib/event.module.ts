@@ -14,4 +14,4 @@ export class EventService<E> {
 		EventService
 	]
 })
-export class LinkModule {}
+export class EventModule {}

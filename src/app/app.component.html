@@ -10,9 +10,8 @@
 		</mat-nav-list>
 	</mat-sidenav>
 	<mat-sidenav-content>
-
 		<div class="container">
-			<!-- <app-breadcrumb [links]="breadcrumbs"></app-breadcrumb> -->
+			<tg-breadcrumb [links]="breadcrumbs"></tg-breadcrumb>
 			<router-outlet *ngIf="user"></router-outlet>
 			<tg-login *ngIf="!user" (login)="onLogin($event)"></tg-login>
 		</div>

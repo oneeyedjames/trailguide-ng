@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { EventService } from '../../lib/event.module';
 import { Link }         from '../../lib/link.module';
 
+import { BreadcrumbService } from '../breadcrumb/breadcrumb.module';
+
 import { Issue }        from './issue.model';
 import { IssueService } from './issue.service';
 
@@ -15,13 +17,13 @@ import { IssueService } from './issue.service';
 })
 export class IssueDetailComponent implements OnInit, OnDestroy {
 	private sub: Subscription;
+	private showForm: boolean;
 
 	issue: Issue;
 
-	showForm: boolean;
-
 	constructor(
 		private issueService: IssueService,
+		private breadcrumbService: BreadcrumbService,
 		private linkService: EventService<Link>,
 		private router: Router,
 		private route: ActivatedRoute
@@ -33,7 +35,13 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
 
 		this.sub = this.route.params.subscribe((params: Params) => {
 			this.issueService.getOne(params.id)
-			.then((issue: Issue) => this.issue = issue);
+			.then((issue: Issue) => {
+				this.issue = issue;
+				this.breadcrumbService.emit([
+					{ label: 'Issues', action: 'issues' },
+					{ label: issue.title, action: ['issue', issue._id] }
+				]);
+			});
 		});
 	}
 
