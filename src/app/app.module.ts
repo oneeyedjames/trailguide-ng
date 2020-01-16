@@ -13,6 +13,7 @@ import { AppViewsModule, AppRoutesModule } from './app-views.module';
 import { AppComponent }   from './app.component';
 
 import { HeaderModule } from './header/header.module';
+import { FooterModule } from './footer/footer.module';
 import { BreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { LoginModule } from './login/login.module';
 
@@ -47,6 +48,7 @@ import { ReplyService }   from './article/reply.service';
 		AppViewsModule,
 		AppRoutesModule,
 		HeaderModule,
+		FooterModule,
 		BreadcrumbModule,
 		LoginModule
 	],

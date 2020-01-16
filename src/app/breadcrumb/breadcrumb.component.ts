@@ -14,6 +14,10 @@ export class BreadcrumbComponent {
 	@Input()
 	links: Link[] = [];
 
+	get isEmpty(): boolean {
+		return this.links == undefined || this.links.length == 0;
+	}
+
 	constructor(
 		private breadcrumbService: BreadcrumbService,
 		private linkService: LinkService
