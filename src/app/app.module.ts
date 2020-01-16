@@ -16,10 +16,9 @@ import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
 import { BreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { LoginModule } from './login/login.module';
+import { UserModule } from './user/user.module';
+import { RoleModule } from './role/role.module';
 
-import { LoginService }   from './login/login.service';
-import { UserService }    from './user/user.service';
-import { RoleService }    from './role/role.service';
 import { IssueService }   from './issue/issue.service';
 import { ChapterService } from './chapter/chapter.service';
 import { ArticleService } from './article/article.service';
@@ -30,8 +29,6 @@ import { ReplyService }   from './article/reply.service';
 		AppComponent
 	],
 	providers: [
-		UserService,
-		RoleService,
 		IssueService,
 		ChapterService,
 		ArticleService,
@@ -50,7 +47,9 @@ import { ReplyService }   from './article/reply.service';
 		HeaderModule,
 		FooterModule,
 		BreadcrumbModule,
-		LoginModule
+		LoginModule,
+		UserModule,
+		RoleModule
 	],
 	bootstrap: [
 		AppComponent

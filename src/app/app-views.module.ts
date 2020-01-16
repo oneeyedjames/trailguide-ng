@@ -42,10 +42,6 @@ export const AppRoutesModule = RouterModule.forRoot([
 
 @NgModule({
 	declarations: [
-		UserListComponent,
-		UserFormComponent,
-		RoleListComponent,
-		RoleFormComponent,
 		IssueListComponent,
 		IssueDetailComponent,
 		IssueFormComponent,
@@ -66,10 +62,6 @@ export const AppRoutesModule = RouterModule.forRoot([
 		LinkModule
 	],
 	exports: [
-		UserListComponent,
-		UserFormComponent,
-		RoleListComponent,
-		RoleFormComponent,
 		IssueListComponent,
 		IssueDetailComponent,
 		IssueFormComponent,
