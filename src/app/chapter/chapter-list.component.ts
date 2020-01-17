@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PublicContentModel } from '../content.module';
 
@@ -18,7 +19,10 @@ export class ChapterListComponent implements OnInit {
 
 	chapters: Chapter[];
 
-	constructor(private chapterService: ChapterService) {}
+	constructor(
+		private chapterService: ChapterService,
+		private router: Router
+	) {}
 
 	ngOnInit() {
 		this.chapterService.getChildren('issue', this.issue)
@@ -42,5 +46,9 @@ export class ChapterListComponent implements OnInit {
 			this.newChapter = new Chapter();
 			this.newChapter.issue = this.issue._id;
 		}
+	}
+
+	goToDetail(chapter: Chapter) {
+		this.router.navigate(['chapter', chapter._id]);
 	}
 }

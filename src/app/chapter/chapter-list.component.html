@@ -1,27 +1,26 @@
 <div *ngIf="issue">
-	<h2>
-		<i class="fa fa-calendar-alt"></i> Chapters
-		<button class="btn float-right" (click)="toggleForm()"
-			[ngClass]="showForm ? 'btn-secondary' : 'btn-success'">
-			<span *ngIf="!showForm"><i class="fa fa-plus"></i> Add New</span>
-			<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
-		</button>
-	</h2>
-	<table class="table" *ngIf="!showForm">
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Scripture</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let chapter of chapters">
-				<td>
-					<a href="/chapter/{{ chapter._id }}">{{ chapter.title || '(No Title)' }}</a>
-				</td>
-				<td>{{ chapter.scripture }}</td>
-			</tr>
-		</tbody>
-	</table>
-	<tg-chapter-form *ngIf="showForm" [chapter]="newChapter" (save)="onSave($event)" (cancel)="onCancel()"></tg-chapter-form>
+	<h2>Chapters</h2>
+	<mat-table #table [dataSource]="chapters" *ngIf="!showForm">
+		<ng-container matColumnDef="title">
+			<mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+			<mat-cell *matCellDef="let chapter">
+				<a (click)="goToDetail(chapter)">{{ chapter.title || '(No Title)' }}</a>
+			</mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="scripture">
+			<mat-header-cell *matHeaderCellDef>Scripture</mat-header-cell>
+			<mat-cell *matCellDef="let chapter">{{ chapter.scripture }}</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="['title', 'scripture']"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: ['title', 'scripture']"></mat-row>
+	</mat-table>
+
+	<button mat-mini-fab *ngIf="!showForm" color="accent" (click)="toggleForm()">
+		<mat-icon>add</mat-icon>
+	</button>
+
+	<tg-chapter-form *ngIf="showForm" [chapter]="newChapter"
+		(save)="onSave($event)" (cancel)="onCancel()"></tg-chapter-form>
 </div>
