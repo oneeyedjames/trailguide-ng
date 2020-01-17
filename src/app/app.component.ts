@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { EventService } from '../lib/event.module';
 import { Link, LinkService } from '../lib/link.module';
 
+import { BreadcrumbService } from './breadcrumb/breadcrumb.module';
 import { LoginService, User } from './login/login.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
 	user: User;
 
 	constructor(
+		private breadcrumbService: BreadcrumbService,
 		private loginService: LoginService,
 		private eventService: EventService<Link>,
 		private linkService: LinkService,
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit {
 			if (e instanceof NavigationEnd) {
 				this.sidebarLinks = [this.homeLink, this.logoutLink];
 				this.contextLinks = [];
+				this.breadcrumbService.emit([]);
 			}
 		});
 	}
