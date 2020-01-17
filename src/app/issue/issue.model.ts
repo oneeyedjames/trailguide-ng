@@ -1,6 +1,6 @@
-import { ContentModel } from '../content.model';
+import { PublicContentModel } from '../content.module';
 
-export class Issue implements ContentModel {
+export class Issue implements PublicContentModel {
 	_id: string;
 	title: string;
 	description: string;

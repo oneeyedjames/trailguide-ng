@@ -1,4 +1,4 @@
-import { ContentModel } from '../content.model';
+import { ContentModel } from '../content.module';
 
 export const Resources = [
 	'issue',
