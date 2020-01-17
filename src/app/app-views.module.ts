@@ -42,16 +42,6 @@ export const AppRoutesModule = RouterModule.forRoot([
 
 @NgModule({
 	declarations: [
-		IssueListComponent,
-		IssueDetailComponent,
-		IssueFormComponent,
-		ChapterListComponent,
-		ChapterDetailComponent,
-		ChapterFormComponent,
-		ArticleListComponent,
-		ArticleDetailComponent,
-		ArticleFormComponent,
-		QuestionMessagePipe
 	],
 	imports: [
 		BrowserModule,
@@ -62,15 +52,6 @@ export const AppRoutesModule = RouterModule.forRoot([
 		LinkModule
 	],
 	exports: [
-		IssueListComponent,
-		IssueDetailComponent,
-		IssueFormComponent,
-		ChapterListComponent,
-		ChapterDetailComponent,
-		ChapterFormComponent,
-		ArticleListComponent,
-		ArticleDetailComponent,
-		QuestionMessagePipe
 	]
 })
 export class AppViewsModule {}
