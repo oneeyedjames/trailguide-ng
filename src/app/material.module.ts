@@ -7,15 +7,7 @@ import {
 	MatDialogConfig,
 	MatSnackBar,
 	MatSnackBarConfig,
-	MatSnackBarDismiss,
-	MatToolbarModule,
-	MatButtonModule,
-	MatMenuModule,
-	MatIconModule,
-	MatCardModule,
-	MatGridListModule,
-	MatFormFieldModule,
-	MatInputModule
+	MatSnackBarDismiss
 } from '@angular/material';
 
 export const DIALOG_DEFAULTS: MatDialogConfig = {
@@ -69,16 +61,6 @@ export class ModalContainerComponent<D> {
 	providers: [
 		DialogConfig,
 		SnackBarConfig
-	],
-	exports: [
-		MatToolbarModule,
-		MatButtonModule,
-		MatMenuModule,
-		MatIconModule,
-		MatCardModule,
-		MatGridListModule,
-		MatFormFieldModule,
-		MatInputModule
 	]
 })
 export class MaterialModule {}
