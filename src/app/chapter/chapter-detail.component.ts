@@ -3,8 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { Issue }        from '../issue/issue.model';
-import { IssueService } from '../issue/issue.service';
+import { PublicContentModel } from '../content.module';
 
 import { Chapter }		  from './chapter.model';
 import { ChapterService } from './chapter.service';
@@ -15,14 +14,12 @@ import { ChapterService } from './chapter.service';
 })
 export class ChapterDetailComponent {
 	private sub: Subscription;
+	private showForm: boolean;
 
-	issue: Issue;
+	issue: PublicContentModel; // Issue;
 	chapter: Chapter;
 
-	showForm: boolean;
-
 	constructor (
-		private issueService: IssueService,
 		private chapterService: ChapterService,
 		private router: Router,
 		private route: ActivatedRoute
@@ -33,26 +30,12 @@ export class ChapterDetailComponent {
 			this.chapterService.getOne(params['id'])
 			.then((chapter: Chapter) => {
 				this.chapter = chapter;
-				return this.issueService.getOne(chapter.issue);
-			}).then((issue: Issue) => {
-				this.issue = issue;
 			});
 		});
 	}
 
 	ngOnDestroy() {
 		this.sub.unsubscribe();
-	}
-
-	goToList() {
-		this.router.navigate([ '/issue', this.issue._id ]);
-	}
-
-	toggleForm(showForm?: boolean) {
-		if (showForm == undefined)
-			showForm = !this.showForm;
-
-		this.showForm = showForm;
 	}
 
 	onSave(chapter: Chapter) {
@@ -62,5 +45,16 @@ export class ChapterDetailComponent {
 
 	onCancel() {
 		this.toggleForm(false);
+	}
+
+	toggleForm(showForm?: boolean) {
+		if (showForm == undefined)
+			showForm = !this.showForm;
+
+		this.showForm = showForm;
+	}
+
+	goToList() {
+		this.router.navigate([ 'issue', this.issue._id ]);
 	}
 }

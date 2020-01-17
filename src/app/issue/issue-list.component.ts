@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Breadcrumb, BreadcrumbService } from '../breadcrumb/breadcrumb.module';
+import { BreadcrumbService } from '../breadcrumb/breadcrumb.module';
 
 import { Issue } from './issue.model';
 import { IssueService } from './issue.service';
@@ -11,10 +11,10 @@ import { IssueService } from './issue.service';
 	templateUrl: './issue-list.component.html'
 })
 export class IssueListComponent implements OnInit {
-	issues: Issue[];
+	private newIssue: Issue = new Issue();
+	private showForm: boolean;
 
-	newIssue: Issue = new Issue();
-	showForm: boolean;
+	issues: Issue[];
 
 	constructor(
 		private issueService: IssueService,

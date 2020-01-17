@@ -3,11 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { Issue }        from '../issue/issue.model';
-import { IssueService } from '../issue/issue.service';
-
-import { Chapter }        from '../chapter/chapter.model';
-import { ChapterService } from '../chapter/chapter.service';
+import { PublicContentModel } from '../content.module';
 
 import { Article }		  from './article.model';
 import { ArticleService } from './article.service';
@@ -24,11 +20,11 @@ import { ReplyService } from './reply.service';
 })
 export class ArticleDetailComponent {
 	private sub: Subscription;
+	private showForm: boolean;
+	private _reply: Reply;
 
-	issue: Issue;
-	chapter: Chapter;
+	chapter: PublicContentModel; // Chapter;
 	article: Article;
-	_reply: Reply;
 
 	get reply(): Reply {
 		return this._reply;
@@ -47,8 +43,6 @@ export class ArticleDetailComponent {
 
 	defaultQuestions = DefaultQuestions;
 
-	showForm: boolean;
-
 	get questions(): Questions {
 		return this.article.questions || DefaultQuestions;
 	}
@@ -65,8 +59,6 @@ export class ArticleDetailComponent {
 	answerList = [];
 
 	constructor (
-		private issueService: IssueService,
-		private chapterService: ChapterService,
 		private articleService: ArticleService,
 		private replyService: ReplyService,
 		private router: Router,
@@ -82,28 +74,12 @@ export class ArticleDetailComponent {
 				this.replyService.getChild<Article>('article', article)
 				.then((reply: Reply) => this.reply = reply)
 				.catch((err: Error) => this.reply = new Reply());
-
-				return this.chapterService.getOne(article.chapter);
-			}).then((chapter: Chapter) => {
-				this.chapter = chapter;
-				return this.issueService.getOne(chapter.issue);
-			}).then((issue: Issue) => this.issue = issue);
+			});
 		});
 	}
 
 	ngOnDestroy() {
 		this.sub.unsubscribe();
-	}
-
-	goToList() {
-		this.router.navigate([ '/chapter', this.chapter._id ]);
-	}
-
-	toggleForm(showForm?: boolean) {
-		if (showForm == undefined)
-			showForm = !this.showForm;
-
-		this.showForm = showForm;
 	}
 
 	onSave(article: Article) {
@@ -124,5 +100,16 @@ export class ArticleDetailComponent {
 
 		this.replyService.save(this.reply)
 		.then((reply: Reply) => console.log(this.reply = reply));
+	}
+
+	toggleForm(showForm?: boolean) {
+		if (showForm == undefined)
+			showForm = !this.showForm;
+
+		this.showForm = showForm;
+	}
+
+	goToList() {
+		this.router.navigate([ '/chapter', this.chapter._id ]);
 	}
 }

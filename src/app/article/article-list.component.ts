@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { Chapter } from '../chapter/chapter.model';
+import { PublicContentModel } from  '../content.module';
 
 import { Article }        from './article.model';
 import { ArticleService } from './article.service';
@@ -10,19 +11,31 @@ import { ArticleService } from './article.service';
 	templateUrl: './article-list.component.html'
 })
 export class ArticleListComponent implements OnInit {
+	private newArticle: Article;
+	private showForm: boolean;
+
 	@Input()
-	chapter: Chapter;
+	chapter: PublicContentModel; // Chapter;
 
 	articles: Article[];
 
-	newArticle: Article;
-	showForm: boolean;
-
-	constructor(private articleService: ArticleService) {}
+	constructor(
+		private articleService: ArticleService,
+		private router: Router
+	) {}
 
 	ngOnInit() {
 		this.articleService.getChildren('chapter', this.chapter)
 		.then((articles: Article[]) => this.articles = articles);
+	}
+
+	onSave(article: Article) {
+		this.articles.push(article);
+		this.toggleForm(false);
+	}
+
+	onCancel() {
+		this.toggleForm(false);
 	}
 
 	toggleForm(showForm?: boolean) {
@@ -35,12 +48,7 @@ export class ArticleListComponent implements OnInit {
 		}
 	}
 
-	onSave(article: Article) {
-		this.articles.push(article);
-		this.toggleForm(false);
-	}
-
-	onCancel() {
-		this.toggleForm(false);
+	goToDetail(article: Article) {
+		this.router.navigate(['article', article._id]);
 	}
 }

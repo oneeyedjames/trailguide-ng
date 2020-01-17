@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Issue } from '../issue/issue.model';
+import { PublicContentModel } from '../content.module';
 
 import { Chapter }        from './chapter.model';
 import { ChapterService } from './chapter.service';
@@ -10,19 +10,28 @@ import { ChapterService } from './chapter.service';
 	templateUrl: './chapter-list.component.html'
 })
 export class ChapterListComponent implements OnInit {
+	private newChapter: Chapter;
+	private showForm: boolean;
+
 	@Input()
-	issue: Issue;
+	issue: PublicContentModel; // Issue;
 
 	chapters: Chapter[];
-
-	newChapter: Chapter;
-	showForm: boolean;
 
 	constructor(private chapterService: ChapterService) {}
 
 	ngOnInit() {
 		this.chapterService.getChildren('issue', this.issue)
 		.then((chapters: Chapter[]) => this.chapters = chapters);
+	}
+
+	onSave(chapter: Chapter) {
+		this.chapters.push(chapter);
+		this.toggleForm(false);
+	}
+
+	onCancel() {
+		this.toggleForm(false);
 	}
 
 	toggleForm(showForm?: boolean) {
@@ -33,14 +42,5 @@ export class ChapterListComponent implements OnInit {
 			this.newChapter = new Chapter();
 			this.newChapter.issue = this.issue._id;
 		}
-	}
-
-	onSave(chapter: Chapter) {
-		this.chapters.push(chapter);
-		this.toggleForm(false);
-	}
-
-	onCancel() {
-		this.toggleForm(false);
 	}
 }
