@@ -19,7 +19,7 @@
 			</div>
 			<div class="col-md-8 col-lg-9">
 				<div class="row">
-					<div class="col-xs-12 col-lg-6" *ngFor="let question of questionList; let i = index">
+					<div class="col-lg-6" *ngFor="let question of questionList; let i = index">
 						<h3>{{ question.heading }}</h3>
 						<mat-form-field>
 							<textarea matInput [(ngModel)]="answerList[i]"

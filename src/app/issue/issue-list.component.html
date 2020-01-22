@@ -1,7 +1,7 @@
 <h2>Issues</h2>
 
 <div class="row" *ngIf="!showForm">
-	<div class="col-6" *ngFor="let issue of issues">
+	<div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let issue of issues">
 		<mat-card (click)="goToDetail(issue)">
 			<mat-card-header>
 				<mat-card-title>{{ issue.title || '(No Title)' }}</mat-card-title>

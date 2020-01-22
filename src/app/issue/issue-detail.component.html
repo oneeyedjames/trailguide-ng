@@ -1,6 +1,6 @@
 <div *ngIf="issue">
 	<div class="row">
-		<div class="col-sm-12 col-md-6">
+		<div class="col-md-6">
 			<h2>{{ issue.title }}</h2>
 			<div *ngIf="!showForm">
 				<p class="small">
@@ -15,7 +15,7 @@
 			<tg-issue-form *ngIf="showForm" [issue]="issue"
 				(save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>
 		</div>
-		<div class="col-sm-12 col-md-6">
+		<div class="col-md-6">
 			<tg-chapter-list [issue]="issue"></tg-chapter-list>
 		</div>
 	</div>
