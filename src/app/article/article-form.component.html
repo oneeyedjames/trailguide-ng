@@ -1,68 +1,57 @@
-<div class="form-group">
-	<label>Title</label>
-	<input type="text" class="form-control" [(ngModel)]="articleCopy.title">
-</div>
-<div class="form-group">
-	<label>Publication Date</label>
-	<input type="date" class="form-control"
+<mat-form-field>
+	<input matInput placeholder="Title" [(ngModel)]="articleCopy.title">
+</mat-form-field>
+<mat-form-field>
+	<input type="date" matInput placeholder="Publication Date"
 		[ngModel]="articleCopy.publishedAt | date:'yyyy-MM-dd':'UTC'"
 		(ngModelChange)="articleCopy.publishedAt = $event">
-</div>
+</mat-form-field>
 <div class="row">
-	<div class="col">
-		<div class="form-group">
-			<label>Bible Reading</label>
-			<input type="text" class="form-control" [(ngModel)]="articleCopy.bibleReading">
-		</div>
+	<div class="col-6">
+		<mat-form-field>
+			<input matInput placeholder="Bible Reading"
+				[(ngModel)]="articleCopy.bibleReading">
+		</mat-form-field>
 	</div>
-	<div class="col">
-		<div class="form-group">
-			<label>Extra Reading</label>
-			<input type="text" class="form-control" [(ngModel)]="articleCopy.extraReading">
-		</div>
-	</div>
-</div>
-<div class="form-group">
-	<label>Content</label>
-	<textarea class="form-control" [(ngModel)]="articleCopy.content"></textarea>
-</div>
-<h3><i class="fa fa-question"></i> Questions</h3>
-<div class="form-group">
-	<div class="form-check">
-		<input class="form-check-input" id="use-default-questions" type="checkbox" [(ngModel)]="useDefaultQuestions" (change)="toggleUseDefault()">
-		<label class="form-check-label" for="use-default-questions">Use Default Questions</label>
+	<div class="col-6">
+		<mat-form-field>
+			<input matInput placeholder="Extra Reading"
+				[(ngModel)]="articleCopy.extraReading">
+		</mat-form-field>
 	</div>
 </div>
-<div class="form-group">
-	<label>Observation</label>
-	<input type="text" class="form-control"
-		[disabled]="useDefaultQuestions"
-		[(ngModel)]="questions.observation.message"
-		placeholder="{{ defaultQuestions.observation.message }}">
-</div>
-<div class="form-group">
-	<label>Interpretation</label>
-	<input type="text" class="form-control"
-		[disabled]="useDefaultQuestions"
-		[(ngModel)]="questions.interpretation.message"
-		placeholder="{{ defaultQuestions.interpretation.message }}">
-</div>
-<div class="form-group">
-	<label>Application</label>
-	<input type="text" class="form-control"
-		[disabled]="useDefaultQuestions"
-		[(ngModel)]="questions.application.message"
-		placeholder="{{ defaultQuestions.application.message }}">
-</div>
-<div class="form-group">
-	<label>Implementation</label>
-	<input type="text" class="form-control"
-		[disabled]="useDefaultQuestions"
-		[(ngModel)]="questions.implementation.message"
-		placeholder="{{ defaultQuestions.implementation.message }}">
-</div>
+<mat-form-field>
+	<textarea matInput placeholder="Content"
+		[(ngModel)]="articleCopy.content"></textarea>
+</mat-form-field>
+
+<h3>Questions</h3>
+
 <p>
-	<button class="btn btn-primary" (click)="doSave()"><i class="fa fa-save"></i> Save</button>
-	<button class="btn btn-danger" (click)="doDelete()" *ngIf="articleCopy._id"><i class="fa fa-trash"></i> Delete</button>
-	<button class="btn btn-secondary" (click)="doCancel()"><i class="fa fa-ban"></i> Cancel</button>
+	<mat-checkbox [(ngModel)]="useDefaultQuestions"
+		(change)="toggleUseDefault()">Use Default Questions</mat-checkbox>
+</p>
+<mat-form-field>
+	<input matInput placeholder="Observation"
+		[disabled]="useDefaultQuestions"
+		[(ngModel)]="questions.observation.message">
+</mat-form-field>
+<mat-form-field>
+	<input matInput placeholder="Interpretation"
+		[disabled]="useDefaultQuestions"
+		[(ngModel)]="questions.interpretation.message">
+</mat-form-field>
+<mat-form-field>
+	<input matInput placeholder="Application"
+		[disabled]="useDefaultQuestions"
+		[(ngModel)]="questions.application.message">
+</mat-form-field>
+<mat-form-field>
+	<input matInput placeholder="Implementation"
+		[disabled]="useDefaultQuestions"
+		[(ngModel)]="questions.implementation.message">
+</mat-form-field>
+<p>
+	<button mat-raised-button color="primary" (click)="doSave()">Save</button>
+	<button mat-raised-button (click)="doCancel()">Cancel</button>
 </p>

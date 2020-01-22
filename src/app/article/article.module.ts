@@ -3,6 +3,16 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import {
+	MatButtonModule,
+	MatIconModule,
+	MatCardModule,
+	MatTableModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatCheckboxModule
+} from '@angular/material';
+
 import { ArticleListComponent }   from './article-list.component';
 export { ArticleListComponent }   from './article-list.component';
 
@@ -31,7 +41,14 @@ export { Reply } from './reply.model';
 	imports: [
 		HttpModule,
 		FormsModule,
-		BrowserModule
+		BrowserModule,
+		MatButtonModule,
+		MatIconModule,
+		MatCardModule,
+		MatTableModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatCheckboxModule
 	],
 	exports: [
 		ArticleListComponent,

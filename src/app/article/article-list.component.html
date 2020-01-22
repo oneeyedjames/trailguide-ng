@@ -1,27 +1,29 @@
 <div *ngIf="chapter">
-	<h2>
-		<i class="fa fa-file-alt"></i> Articles
-		<button class="btn float-right" (click)="toggleForm()"
-			[ngClass]="showForm ? 'btn-secondary' : 'btn-success'">
-			<span *ngIf="!showForm"><i class="fa fa-plus"></i> Add New</span>
-			<span *ngIf="showForm"><i class="fa fa-ban"></i> Cancel</span>
-		</button>
-	</h2>
-	<table class="table" *ngIf="!showForm">
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let article of articles">
-				<td>
-					<a href="/article/{{ article._id }}">{{ article.title || '(No Title)' }}</a>
-				</td>
-				<td>{{ article.publishedAt | date:'MMMM d, yyy':'UTC' }}</td>
-			</tr>
-		</tbody>
-	</table>
-	<tg-article-form *ngIf="showForm" [article]="newArticle" (save)="onSave($event)" (cancel)="onCancel()"></tg-article-form>
+	<h2>Articles</h2>
+
+	<mat-table #table [dataSource]="articles" *ngIf="!showForm">
+		<ng-container matColumnDef="title">
+			<mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+			<mat-cell *matCellDef="let article">
+				<a (click)="goToDetail(article)">{{ article.title || '(No Title)' }}</a>
+			</mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="date">
+			<mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+			<mat-cell *matCellDef="let article">
+				{{ article.publishedAt | date:'MMMM d, yyy':'UTC' }}
+			</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="['title', 'date']"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: ['title', 'date']"></mat-row>
+	</mat-table>
+
+	<button mat-mini-fab *ngIf="!showForm" color="accent" (click)="toggleForm()">
+		<mat-icon>add</mat-icon>
+	</button>
+
+	<tg-article-form *ngIf="showForm" [article]="newArticle"
+		(save)="onSave($event)" (cancel)="onCancel()"></tg-article-form>
 </div>
