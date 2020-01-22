@@ -3,21 +3,49 @@
 
 $config: mat-typography-config();
 
-$base-padding: 16px;
-$grid-columns: 12;
+@include mat-base-typography($config);
 
-body {
-	margin: 0;
-	font-family: mat-font-family($config);
-	font-size: mat-font-size($config, body-1);
+.mat-card-header {
+	.mat-card-title {
+		font-size: mat-font-size($config, body-2);
+		font-weight: mat-font-weight($config, body-2);
+		// line-height: mat-line-height($config, body-2);
+	}
+
+	.mat-card-subtitle {
+		font-size: mat-font-size($config, caption);
+		font-weight: mat-font-weight($config, caption);
+		// line-height: mat-line-height($config, caption);
+	}
+}
+
+.mat-mini-fab.br {
+	position: absolute;
+	right: 32px;
+	bottom: 32px;
 }
 
 mat-sidenav-container { margin-top: 56px; }
 
+mat-form-field { width: 100%; }
+
+$base-padding: 16px;
+$grid-columns: 12;
+
+body { margin: 0; }
+
 .container { margin: $base-padding; }
 .fill-space { flex: 1 1 auto; }
 
-@mixin clearfix {
+.lead {
+	font-size: mat-font-size($config, body-2);
+	font-weight: mat-font-weight($config, body-2);
+	line-height: mat-line-height($config, body-2);
+	display: inline-block;
+	&::first-letter { font-size: 1.3em; }
+}
+
+.clearfix {
 	&::after {
 		clear: both;
 		content: "";
@@ -26,13 +54,3 @@ mat-sidenav-container { margin-top: 56px; }
 }
 
 @import 'grid';
-
-.mat-mini-fab.br {
-	position: absolute;
-	right: 32px;
-	bottom: 32px;
-}
-
-mat-form-field {
-	width: 100%;
-}

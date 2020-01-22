@@ -1,5 +1,5 @@
 .row {
-	@include clearfix;
+	@extend .clearfix;
 	margin: 0px (-$base-padding);
 }
 
@@ -18,7 +18,7 @@ $sizes: xs sm md lg;
 }
 
 #{$all-cols} {
-	position: relative;
+	// position: relative;
 	float: left;
 	width: 100%;
 	padding: 0 $base-padding;
