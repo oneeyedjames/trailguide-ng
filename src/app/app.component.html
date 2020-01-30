@@ -1,11 +1,17 @@
-<tg-header [menuLinks]="contextLinks" (toggle)="sidebarOpen = !sidebarOpen"
-	[user]="user" [authorize]="hasPermission" (logout)="onLogout()"></tg-header>
+<tg-header
+	title="Trail Guide"
+	[menuLinks]="contextLinks"
+	[showBackButton]="previousRoutes.length > 0"
+	(toggle)="sidebarOpen = !sidebarOpen"
+	(goBack)="onGoBack()"></tg-header>
+
 <mat-sidenav-container fullscreen>
-	<mat-sidenav mode="push" [(opened)]="sidebarOpen">
+	<mat-sidenav [mode]="sidebarMode" [(opened)]="sidebarIsOpen">
 		<mat-nav-list *ngFor="let link of sidebarLinks">
 			<a mat-list-item (click)="doLinkClick(link)">
-				<mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>
-				{{ link.label }}
+				<mat-icon *ngIf="link.icon" [matTooltip]="link.label"
+					matTooltipPosition="after">{{ link.icon }}</mat-icon>
+				<span *ngIf="sidebarOpen || !mediaQuery.matches">{{ link.label }}</span>
 			</a>
 		</mat-nav-list>
 	</mat-sidenav>
@@ -17,3 +23,5 @@
 		</div>
 	</mat-sidenav-content>
 </mat-sidenav-container>
+
+<!-- <tg-footer [links]="sidebarLinks" (linkClick)="doLinkClick($event)"></tg-footer> -->

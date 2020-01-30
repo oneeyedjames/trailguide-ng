@@ -6,6 +6,10 @@ import { HttpModule }    from '@angular/http';
 import { MatIconModule }    from '@angular/material';
 import { MatListModule }    from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { MediaMatcher } from '@angular/cdk/layout';
 
 import { EventService } from '../lib/event.module';
 
@@ -28,7 +32,8 @@ import { ArticleModule } from './article/article.module';
 		AppComponent
 	],
 	providers: [
-		EventService
+		EventService,
+		MediaMatcher
 	],
 	imports: [
 		BrowserModule,
@@ -38,6 +43,8 @@ import { ArticleModule } from './article/article.module';
 		MatIconModule,
 		MatListModule,
 		MatSidenavModule,
+		MatToolbarModule,
+		MatTooltipModule,
 
 		AppRoutesModule,
 		HeaderModule,

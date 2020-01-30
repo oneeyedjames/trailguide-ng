@@ -1,13 +1,19 @@
 <mat-toolbar color="primary">
-	<button mat-icon-button (click)="toggleEvent.emit()">
+	<button mat-icon-button *ngIf="showBackButton"
+		(click)="goBackEvent.emit()">
+		<mat-icon>arrow_back</mat-icon>
+	</button>
+	<button mat-icon-button *ngIf="!showBackButton"
+		(click)="toggleEvent.emit()">
 		<mat-icon>menu</mat-icon>
 	</button>
-	<span>Trailguide</span>
+	<span>{{ title }}</span>
 	<span class="fill-space"></span>
-	<button *ngIf="menuLinks.length" mat-icon-button [matMenuTriggerFor]="appMenu">
+	<button mat-icon-button *ngIf="menuLinks.length"
+		[matMenuTriggerFor]="contextMenu">
 		<mat-icon>more_vert</mat-icon>
 	</button>
-	<mat-menu #appMenu="matMenu">
+	<mat-menu #contextMenu="matMenu">
 		<button mat-menu-item *ngFor="let link of menuLinks"
 			(click)="doMenuAction(link, $event)">
 			<mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>

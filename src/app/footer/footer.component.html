@@ -1,7 +1,6 @@
-<footer class="footer">
-	<div class="container">
-		<span class="text-muted">
-			Made with <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>️
-		</span>
+<mat-toolbar color="primary" class="bottom-nav">
+	<div class="item" *ngFor="let link of links" (click)="linkClickEvent.emit(link)">
+		<mat-icon>{{ link.icon }}</mat-icon>
+		<div class="label">{{ link.label }}</div>
 	</div>
-</footer>
+</mat-toolbar>

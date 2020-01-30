@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { MatIconModule, MatToolbarModule } from '@angular/material';
 
 import { FooterComponent } from './footer.component';
 export { FooterComponent } from './footer.component';
@@ -9,6 +12,11 @@ export { FooterComponent } from './footer.component';
 	],
 	exports: [
 		FooterComponent
+	],
+	imports: [
+		BrowserModule,
+		MatIconModule,
+		MatToolbarModule
 	]
 })
 export class FooterModule {}
