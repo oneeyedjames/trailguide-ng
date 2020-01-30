@@ -1,13 +1,15 @@
 <div *ngIf="chapter">
 	<div class="row">
 		<div class="col-md-6">
-			<h2>{{ chapter.title }}</h2>
+			<h2>
+				{{ chapter.title }}
+				<div class="small">{{ chapter.scripture }}</div>
+			</h2>
 			<div *ngIf="!showForm">
-				<p class="small">{{ chapter.scripture }}</p>
-				<p class="small">
-					{{ chapter.publishedAt | date:'MMMM d, yyyy':'UTC' }}
-				</p>
 				<p>{{ chapter.description }}</p>
+				<p class="small" style="text-align: right">
+					<em>Published {{ chapter.publishedAt | date:'MMMM yyyy':'UTC' }}</em>
+				</p>
 			</div>
 			<tg-chapter-form *ngIf="showForm" [chapter]="chapter"
 				(save)="onSave($event)" (cancel)="onCancel()"></tg-chapter-form>

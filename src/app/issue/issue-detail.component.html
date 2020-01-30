@@ -1,16 +1,18 @@
 <div *ngIf="issue">
 	<div class="row">
 		<div class="col-md-6">
-			<h2>{{ issue.title }}</h2>
-			<div *ngIf="!showForm">
-				<p class="small">
+			<h2>
+				{{ issue.title }}
+				<div class="small">
 					Volume {{ issue.volumeNumber }},
 					Issue {{ issue.issueNumber }}
-				</p>
-				<p class="small">
-					{{ issue.publishedAt | date:'MMMM d, y':'UTC' }}
-				</p>
+				</div>
+			</h2>
+			<div *ngIf="!showForm">
 				<p>{{ issue.description }}</p>
+				<p class="small" style="text-align: right">
+					<em>published {{ issue.publishedAt | date:'MMMM yyyy':'UTC' }}</em>
+				</p>
 			</div>
 			<tg-issue-form *ngIf="showForm" [issue]="issue"
 				(save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>

@@ -2,6 +2,8 @@
 @import '~@angular/material/theming';
 
 $config: mat-typography-config();
+$fg-theme: $mat-light-theme-foreground;
+$bg-theme: $mat-light-theme-background;
 
 @include mat-base-typography($config);
 
@@ -25,9 +27,13 @@ $config: mat-typography-config();
 	bottom: 32px;
 }
 
-mat-sidenav-container { margin-top: 56px; }
+mat-sidenav-container { margin: 56px 0 0; }
 
 mat-form-field { width: 100%; }
+
+@media only screen and (min-width: 600px) {
+	mat-sidenav-container { margin: 64px 0 0; }
+}
 
 $base-padding: 16px;
 $grid-columns: 12;
@@ -43,6 +49,13 @@ body { margin: 0; }
 	line-height: mat-line-height($config, body-2);
 	display: inline-block;
 	&::first-letter { font-size: 1.3em; }
+}
+
+small, .small {
+	font-size: mat-font-size($config, caption);
+	font-weight: mat-font-weight($config, caption);
+	line-height: mat-line-height($config, caption);
+	color: map-get($fg-theme, secondary-text);
 }
 
 .clearfix {

@@ -3,7 +3,7 @@
 	<h1 class="clearfix">{{ article.title || '(No Title)' }}</h1>
 	<div *ngIf="!showForm">
 		<div class="row">
-			<div class="col-md-4 col-lg-3">
+			<div class="col-md-4">
 				<mat-card>
 					<mat-card-header>
 						<mat-card-title>{{ article.bibleReading }}</mat-card-title>
@@ -17,7 +17,7 @@
 					</mat-card-content>
 				</mat-card>
 			</div>
-			<div class="col-md-8 col-lg-9">
+			<div class="col-md-8">
 				<div class="row">
 					<div class="col-lg-6" *ngFor="let question of questionList; let i = index">
 						<h3>{{ question.heading }}</h3>
