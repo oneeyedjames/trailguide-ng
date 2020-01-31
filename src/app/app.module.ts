@@ -9,9 +9,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { MediaMatcher } from '@angular/cdk/layout';
-
 import { EventService } from '../lib/event.module';
+import { ScreenService } from './screen.module';
 
 import { AppRoutesModule } from './app-views.module';
 import { AppComponent }   from './app.component';
@@ -33,7 +32,7 @@ import { ArticleModule } from './article/article.module';
 	],
 	providers: [
 		EventService,
-		MediaMatcher
+		ScreenService
 	],
 	imports: [
 		BrowserModule,

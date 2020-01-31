@@ -11,7 +11,7 @@
 			<a mat-list-item (click)="doLinkClick(link)">
 				<mat-icon *ngIf="link.icon" [matTooltip]="link.label"
 					matTooltipPosition="after">{{ link.icon }}</mat-icon>
-				<span *ngIf="sidebarOpen || !mediaQuery.matches">{{ link.label }}</span>
+				{{ link.label }}
 			</a>
 		</mat-nav-list>
 	</mat-sidenav>

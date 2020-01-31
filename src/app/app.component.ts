@@ -1,11 +1,12 @@
-import { Component, ElementRef, ChangeDetectorRef, Renderer, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Renderer, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { MediaMatcher } from '@angular/cdk/layout';
 
 import { Observable } from 'rxjs/Observable';
 
 import { EventService } from '../lib/event.module';
 import { Link, LinkService } from '../lib/link.module';
+
+import { ScreenService } from './screen.module';
 
 import { BreadcrumbService } from './breadcrumb/breadcrumb.module';
 import { LoginService, User } from './login/login.service';
@@ -14,27 +15,24 @@ import { LoginService, User } from './login/login.service';
 	selector: 'tg-app',
 	templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 	title = 'Trail Guide';
-
-	private mediaQuery: MediaQueryList;
-	private mediaListener: MediaQueryListListener;
 
 	sidebarOpen = false;
 	sidebarLinks: Link[] = [];
 	contextLinks: Link[] = [];
 
 	get sidebarIsOpen(): boolean {
-		return this.sidebarOpen || this.mediaQuery.matches;
+		return this.sidebarOpen || this.screenService.isLarge;
 	}
 
 	set sidebarIsOpen(open: boolean) {
-		if (!this.mediaQuery.matches)
+		if (!this.screenService.isLarge)
 			this.sidebarOpen = open;
 	}
 
 	get sidebarMode(): string {
-		return this.mediaQuery.matches ? 'side' : 'over';
+		return this.screenService.isLarge ? 'side' : 'over';
 	}
 
 	private homeLink: Link = { icon: 'home', label: 'Home', action: '/' };
@@ -51,11 +49,10 @@ export class AppComponent implements OnInit, OnDestroy {
 		private loginService: LoginService,
 		private eventService: EventService<Link>,
 		private linkService: LinkService,
+		private screenService: ScreenService,
 		private router: Router,
 		elementRef: ElementRef,
-		renderer: Renderer,
-		mediaMatcher: MediaMatcher,
-		changeDetectorRef: ChangeDetectorRef
+		renderer: Renderer
 	) {
 		this.eventService.subscribe((link: Link) => {
 			this.contextLinks.push(link);
@@ -86,10 +83,6 @@ export class AppComponent implements OnInit, OnDestroy {
 				this.currentRoute = route;
 			}
 		});
-
-		this.mediaListener = () => changeDetectorRef.detectChanges();
-		this.mediaQuery = mediaMatcher.matchMedia('(min-width: 1024px)');
-		this.mediaQuery.addListener(this.mediaListener);
 	}
 
 	public ngOnInit() {
@@ -98,10 +91,6 @@ export class AppComponent implements OnInit, OnDestroy {
 		.catch((error: any) => console.error(error));
 
 		this.sidebarLinks = [this.homeLink, this.logoutLink];
-	}
-
-	public ngOnDestroy() {
-		this.mediaQuery.removeListener(this.mediaListener);
 	}
 
 	private hasPermission(action: string, resource: string): boolean {
@@ -123,7 +112,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	private doLinkClick(link: Link) {
-		this.sidebarOpen = false;
+		this.sidebarIsOpen = false;
 		this.linkService.doAction(link);
 	}
 
