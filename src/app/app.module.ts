@@ -12,7 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { EventService } from '../lib/event.module';
 import { ScreenService } from './screen.module';
 
-import { AppRoutesModule } from './app-views.module';
+import { RoutesModule } from './routes.module';
 import { AppComponent }   from './app.component';
 
 import { HeaderModule } from './header/header.module';
@@ -45,7 +45,7 @@ import { ArticleModule } from './article/article.module';
 		MatToolbarModule,
 		MatTooltipModule,
 
-		AppRoutesModule,
+		RoutesModule,
 		HeaderModule,
 		FooterModule,
 		BreadcrumbModule,
