@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
-	<button mat-icon-button *ngIf="showBackButton"
-		(click)="goBackEvent.emit()">
-		<mat-icon>arrow_back</mat-icon>
-	</button>
-	<button mat-icon-button *ngIf="!showBackButton"
+	<button mat-icon-button *ngIf="buttonType == 'menu'"
 		(click)="toggleEvent.emit()">
 		<mat-icon>menu</mat-icon>
+	</button>
+	<button mat-icon-button *ngIf="buttonType == 'back'"
+		(click)="goBackEvent.emit()">
+		<mat-icon>arrow_back</mat-icon>
 	</button>
 	<span>{{ title }}</span>
 	<span class="fill-space"></span>

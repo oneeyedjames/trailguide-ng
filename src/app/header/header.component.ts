@@ -3,13 +3,15 @@ import { Router } from '@angular/router';
 
 import { Link, LinkService } from '../../lib/link.module';
 
+export type HeaderButtonType = 'menu' | 'back';
+
 @Component({
 	selector: 'tg-header',
 	templateUrl: './header.component.html'
 })
 export class HeaderComponent {
 	@Input()
-	showBackButton: boolean;
+	buttonType: HeaderButtonType;
 
 	@Input()
 	title: string;

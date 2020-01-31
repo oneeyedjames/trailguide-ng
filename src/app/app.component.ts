@@ -8,6 +8,7 @@ import { Link, LinkService } from '../lib/link.module';
 
 import { ScreenService } from './screen.module';
 
+import { HeaderButtonType } from './header/header.module';
 import { BreadcrumbService } from './breadcrumb/breadcrumb.module';
 import { LoginService, User } from './login/login.service';
 
@@ -33,6 +34,15 @@ export class AppComponent implements OnInit {
 
 	get sidebarMode(): string {
 		return this.screenService.isLarge ? 'side' : 'over';
+	}
+
+	get headerButtonType(): HeaderButtonType {
+		if (this.previousRoutes.length)
+			return 'back';
+		else if (this.screenService.isLarge)
+			return null;
+		else
+			return 'menu';
 	}
 
 	private homeLink: Link = { icon: 'home', label: 'Home', action: '/' };

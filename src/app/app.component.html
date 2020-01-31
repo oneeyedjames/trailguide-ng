@@ -1,7 +1,7 @@
 <tg-header
 	title="Trail Guide"
 	[menuLinks]="contextLinks"
-	[showBackButton]="previousRoutes.length > 0"
+	[buttonType]="headerButtonType"
 	(toggle)="sidebarOpen = !sidebarOpen"
 	(goBack)="onGoBack()"></tg-header>
 
