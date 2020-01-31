@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
-import { MatIconModule }    from '@angular/material';
-import { MatListModule }    from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+	MatIconModule,
+	MatListModule,
+	MatSidenavModule,
+	MatToolbarModule,
+	MatTooltipModule
+} from '@angular/material';
 
 import { EventService } from '../lib/event.module';
 import { ScreenService } from './screen.module';
@@ -27,13 +29,6 @@ import { ChapterModule } from './chapter/chapter.module';
 import { ArticleModule } from './article/article.module';
 
 @NgModule({
-	declarations: [
-		AppComponent
-	],
-	providers: [
-		EventService,
-		ScreenService
-	],
 	imports: [
 		BrowserModule,
 		FormsModule,
@@ -57,8 +52,15 @@ import { ArticleModule } from './article/article.module';
 		ChapterModule,
 		ArticleModule
 	],
+	declarations: [
+		AppComponent
+	],
 	bootstrap: [
 		AppComponent
+	],
+	providers: [
+		EventService,
+		ScreenService
 	]
 })
 export class AppModule {}
