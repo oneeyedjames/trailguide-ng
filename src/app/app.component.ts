@@ -8,7 +8,7 @@ import { Link, LinkService } from '../lib/link.module';
 
 import { ScreenService } from './screen.module';
 
-import { HeaderButtonType } from './header/header.module';
+import { HeaderMenuService, HeaderButtonType } from './header/header.module';
 import { BreadcrumbService } from './breadcrumb/breadcrumb.module';
 import { LoginService, User } from './login/login.service';
 
@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
 
 	sidebarOpen = false;
 	sidebarLinks: Link[] = [];
-	contextLinks: Link[] = [];
 
 	get sidebarIsOpen(): boolean {
 		return this.sidebarOpen || this.screenService.isLarge;
@@ -55,19 +54,15 @@ export class AppComponent implements OnInit {
 	user: User;
 
 	constructor(
+		private headerMenuService: HeaderMenuService,
 		private breadcrumbService: BreadcrumbService,
 		private loginService: LoginService,
-		private eventService: EventService<Link>,
 		private linkService: LinkService,
 		private screenService: ScreenService,
 		private router: Router,
 		elementRef: ElementRef,
 		renderer: Renderer
 	) {
-		this.eventService.subscribe((link: Link) => {
-			this.contextLinks.push(link);
-		});
-
 		renderer.listen(elementRef.nativeElement, 'click', (event) => {
 			if (event.target.nodeName == 'A' && event.target.href) {
 				this.onClick(event);
@@ -76,8 +71,8 @@ export class AppComponent implements OnInit {
 
 		this.router.events.subscribe(event => {
 			if (event instanceof NavigationEnd) {
-				this.contextLinks = [];
-				this.breadcrumbService.emit([]);
+				this.headerMenuService.reset();
+				this.breadcrumbService.reset();
 
 				let route = event.urlAfterRedirects;
 

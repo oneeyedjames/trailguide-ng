@@ -9,15 +9,19 @@
 	</button>
 	<span>{{ title }}</span>
 	<span class="fill-space"></span>
-	<button mat-icon-button *ngIf="menuLinks.length"
+	<button mat-icon-button *ngFor="let item of actionItems"
+		(click)="doMenuAction(item, $event)">
+		<mat-icon>{{ item.icon }}</mat-icon>
+	</button>
+	<button mat-icon-button *ngIf="menuItems.length"
 		[matMenuTriggerFor]="contextMenu">
 		<mat-icon>more_vert</mat-icon>
 	</button>
 	<mat-menu #contextMenu="matMenu">
-		<button mat-menu-item *ngFor="let link of menuLinks"
-			(click)="doMenuAction(link, $event)">
-			<mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>
-			{{ link.label }}
+		<button mat-menu-item *ngFor="let item of menuItems"
+			(click)="doMenuAction(item, $event)">
+			<mat-icon>{{ item.icon }}</mat-icon>
+			{{ item.label }}
 		</button>
 	</mat-menu>
 </mat-toolbar>

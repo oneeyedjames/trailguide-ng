@@ -11,6 +11,9 @@ import {
 import { HeaderComponent } from './header.component';
 export { HeaderComponent, HeaderButtonType } from './header.component';
 
+import { HeaderMenuService } from './header.service';
+export { HeaderMenuService, HeaderMenu, Link } from './header.service';
+
 @NgModule({
 	imports: [
 		BrowserModule,
@@ -25,6 +28,9 @@ export { HeaderComponent, HeaderButtonType } from './header.component';
 	],
 	declarations: [
 		HeaderComponent
+	],
+	providers: [
+		HeaderMenuService
 	]
 })
 export class HeaderModule {}

@@ -3,9 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { EventService } from '../../lib/event.module';
-import { Link }         from '../../lib/link.module';
-
+import { HeaderMenuService, Link } from '../header/header.module';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.module';
 
 import { Issue }        from './issue.model';
@@ -24,14 +22,15 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
 	constructor(
 		private issueService: IssueService,
 		private breadcrumbService: BreadcrumbService,
-		private linkService: EventService<Link>,
+		private headerMenuService: HeaderMenuService,
 		private router: Router,
 		private route: ActivatedRoute
 	) {}
 
 	ngOnInit() {
-		this.linkService.emit({ icon: 'edit', label: 'Edit',
-			action: () => this.toggleForm(true) });
+		this.headerMenuService.emit([
+			{ icon: 'edit', label: 'Edit', action: () => this.toggleForm(true) },
+		]);
 
 		this.sub = this.route.params.subscribe((params: Params) => {
 			this.issueService.getOne(params.id)

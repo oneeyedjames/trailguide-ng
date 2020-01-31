@@ -28,6 +28,7 @@ $bg-theme: $mat-light-theme-background;
 }
 
 mat-sidenav-container { margin: 56px 0 0; }
+mat-sidenav { min-width: 256px; }
 
 mat-form-field { width: 100%; }
 
