@@ -1,7 +1,8 @@
-import { NgModule, Injectable } from '@angular/core';
+import { NgModule, Injectable, EventEmitter } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 interface MediaQueryListEvent {
 	media: string;
@@ -13,16 +14,13 @@ export const SCREEN_MD = 'md';
 export const SCREEN_SM = 'sm';
 export const SCREEN_XS = 'xs';
 
-export interface ScreenEvent { size: string; }
-export interface ScreenEventListener {
-	(event: ScreenEvent): void;
-}
-
 @Injectable()
 export class ScreenService {
 	private lgMediaQuery: MediaQueryList;
 	private mdMediaQuery: MediaQueryList;
 	private smMediaQuery: MediaQueryList;
+
+	private changeEvent = new EventEmitter<string>();
 
 	get isLarge()  : boolean { return this.lgMediaQuery.matches; }
 	get isMedium() : boolean { return this.mdMediaQuery.matches; }
@@ -40,28 +38,22 @@ export class ScreenService {
 			return SCREEN_XS;
 	}
 
-	private listeners: ScreenEventListener[] = [];
-
 	constructor(mediaMatcher: MediaMatcher) {
 		this.lgMediaQuery = mediaMatcher.matchMedia('(min-width: 1024px)');
 		this.mdMediaQuery = mediaMatcher.matchMedia('(min-width: 768px)');
 		this.smMediaQuery = mediaMatcher.matchMedia('(min-width: 480px)');
 
-		let listener = this.onChange.bind(this);
+		let listener = (e: MediaQueryListEvent) => {
+			this.changeEvent.emit(this.size);
+		};
 
 		this.lgMediaQuery.addListener(listener);
 		this.mdMediaQuery.addListener(listener);
 		this.smMediaQuery.addListener(listener);
 	}
 
-	addListener(listener: ScreenEventListener) {
-		this.listeners.push(listener);
-	}
-
-	private onChange(e: MediaQueryListEvent) {
-		let screenEvent = { size: this.size };
-
-		this.listeners.forEach(listener => listener(screenEvent));
+	public onChange(handler: (size: string) => void): Subscription {
+		return this.changeEvent.subscribe(handler);
 	}
 }
 
