@@ -15,10 +15,12 @@
 		</mat-nav-list>
 	</mat-sidenav>
 	<mat-sidenav-content>
-		<div class="container">
+		<div class="container" *ngIf="loginService.isLoggedIn">
 			<tg-breadcrumb [links]="breadcrumbs"></tg-breadcrumb>
-			<router-outlet *ngIf="user"></router-outlet>
-			<tg-login *ngIf="!user" (login)="onLogin($event)"></tg-login>
+			<router-outlet></router-outlet>
+		</div>
+		<div class="container" *ngIf="!loginService.isLoggedIn">
+			<tg-login></tg-login>
 		</div>
 	</mat-sidenav-content>
 </mat-sidenav-container>

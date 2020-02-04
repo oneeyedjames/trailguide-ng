@@ -8,9 +8,11 @@ import { Link, LinkService } from '../lib/link.module';
 
 import { ScreenService } from './screen.module';
 
+import { LoginService } from './login/login.module';
+import { User } from './user/user.module';
+
 import { HeaderMenuService, HeaderButtonType } from './header/header.module';
 import { BreadcrumbService } from './breadcrumb/breadcrumb.module';
-import { LoginService, User } from './login/login.service';
 
 @Component({
 	selector: 'tg-app',
@@ -45,7 +47,8 @@ export class AppComponent implements OnInit {
 	}
 
 	private homeLink: Link = { icon: 'home', label: 'Home', action: '/' };
-	private logoutLink: Link = { icon: 'dashboard', label: 'Logout', action: () => {} };
+	private logoutLink: Link = { icon: 'dashboard', label: 'Logout',
+		action: () => this.loginService.logout() };
 
 	private currentRoute: string;
 	private previousRoutes: string[] = [];
@@ -57,8 +60,8 @@ export class AppComponent implements OnInit {
 		private headerMenuService: HeaderMenuService,
 		private breadcrumbService: BreadcrumbService,
 		private loginService: LoginService,
-		private linkService: LinkService,
 		private screenService: ScreenService,
+		private linkService: LinkService,
 		private router: Router,
 		elementRef: ElementRef,
 		renderer: Renderer
@@ -91,29 +94,8 @@ export class AppComponent implements OnInit {
 	}
 
 	public ngOnInit() {
-		this.loginService.getUser()
-		.then((user: User) => this.user = user)
-		.catch((error: any) => console.error(error));
-
 		this.sidebarLinks = [this.homeLink, this.logoutLink];
-	}
-
-	private hasPermission(action: string, resource: string): boolean {
-		if (this.user == undefined)
-			return false;
-		else if (this.user.admin)
-			return true;
-		else if (this.user.roles == undefined)
-			return false;
-
-		for (let role of this.user.roles) {
-			for (let perm of role.permissions) {
-				if (perm.action == action && perm.resource == resource)
-					return true;
-			}
-		}
-
-		return false;
+		this.loginService.init();
 	}
 
 	private doLinkClick(link: Link) {
@@ -126,14 +108,6 @@ export class AppComponent implements OnInit {
 
 		let route = this.previousRoutes.pop();
 		this.router.navigate([route]);
-	}
-
-	private onLogin(user: User) {
-		this.user = user;
-	}
-
-	private onLogout() {
-		this.user = null;
 	}
 
 	private onClick(event) {
