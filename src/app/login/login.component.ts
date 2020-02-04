@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
-import { LoginService, User } from './login.service';
+import { User } from '../user/user.module';
+
+import { LoginService } from './login.service';
 
 @Component({
 	selector: 'tg-login',
@@ -12,22 +14,20 @@ export class LoginComponent {
 
 	private register: boolean;
 
-	@Output()
-	login = new EventEmitter<User>();
+	@Output('login')
+	loginEvent = new EventEmitter<User>();
 
 	constructor(private loginService: LoginService) {}
 
 	private doLogin() {
 		this.loginService.login(this.username, this.password)
-		.then((isSuccess: boolean) => this.loginService.getUser())
-		.then((user: User) => this.login.emit(user))
+		.then((user: User) => this.loginEvent.emit(user))
 		.catch((error: any) => console.error(error));
 	}
 
 	private doRegister() {
 		this.loginService.register(this.username, this.password)
-		.then((isSuccess: boolean) => this.loginService.getUser())
-		.then((user: User) => this.login.emit(user))
+		.then((user: User) => this.loginEvent.emit(user))
 		.catch((error: any) => console.error(error));
 	}
 
