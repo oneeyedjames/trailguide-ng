@@ -1,12 +1,18 @@
 import { NgModule, Injectable, EventEmitter } from '@angular/core';
 
+import { Subscription } from 'rxjs/Subscription';
+
 @Injectable()
 export class EventService<E> {
 	private emitter = new EventEmitter<E>();
 
-	subscribe(handler: (data: E) => void) { this.emitter.subscribe(handler); }
+	public subscribe(handler: (data: E) => void): Subscription {
+		return this.emitter.subscribe(handler);
+	}
 
-	emit(data: E) { this.emitter.emit(data); }
+	public emit(data: E) {
+		this.emitter.emit(data);
+	}
 }
 
 @NgModule({

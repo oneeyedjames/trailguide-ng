@@ -13,7 +13,7 @@ export interface Link {
 export class LinkService {
 	constructor(protected router: Router) {}
 
-	doAction(link: Link) {
+	public doAction(link: Link) {
 		if (typeof link.action === 'string')
 			this.router.navigate([link.action]);
 		else if (link.action instanceof Array)
