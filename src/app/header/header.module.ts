@@ -12,7 +12,7 @@ import { HeaderComponent } from './header.component';
 export { HeaderComponent, HeaderButtonType } from './header.component';
 
 import { HeaderMenuService } from './header.service';
-export { HeaderMenuService, HeaderMenu, Link } from './header.service';
+export { HeaderMenuService, HeaderMenu } from './header.service';
 
 @NgModule({
 	imports: [

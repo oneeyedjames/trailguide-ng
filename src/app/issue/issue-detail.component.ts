@@ -3,7 +3,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { HeaderMenuService, Link } from '../header/header.module';
+import { Link } from '../../lib/link.module';
+
+import { HeaderMenuService } from '../header/header.module';
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.module';
 
 import { Issue }        from './issue.model';

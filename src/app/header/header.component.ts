@@ -1,9 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LinkService, Link } from '../../lib/link.module';
+
 import { ScreenService } from '../screen.module';
 
-import { HeaderMenuService, HeaderMenu, Link } from './header.service';
+import { HeaderMenuService, HeaderMenu } from './header.service';
 
 export type HeaderButtonType = 'menu' | 'back';
 
@@ -55,6 +57,7 @@ export class HeaderComponent {
 	}
 
 	constructor(
+		private linkService: LinkService,
 		private screenService: ScreenService,
 		private menuService: HeaderMenuService
 	) {
@@ -65,6 +68,6 @@ export class HeaderComponent {
 
 	private doMenuAction(link: Link, event?: MouseEvent) {
 		event.preventDefault();
-		this.menuService.doAction(link);
+		this.linkService.doAction(link);
 	}
 }
