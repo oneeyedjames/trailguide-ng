@@ -3,7 +3,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { Link } from '../../lib/link.module';
+
 import { PublicContentModel } from '../content.module';
+
+import { HeaderMenuService } from '../header/header.module';
+import { BreadcrumbService } from '../breadcrumb/breadcrumb.module';
 
 import { Article }		  from './article.model';
 import { ArticleService } from './article.service';
@@ -61,6 +66,8 @@ export class ArticleDetailComponent {
 	constructor (
 		private articleService: ArticleService,
 		private replyService: ReplyService,
+		private breadcrumbService: BreadcrumbService,
+		private headerMenuService: HeaderMenuService,
 		private router: Router,
 		private route: ActivatedRoute
 	) {}
@@ -70,6 +77,17 @@ export class ArticleDetailComponent {
 			this.articleService.getOne(params['id'])
 			.then((article: Article) => {
 				this.article = article;
+
+				this.headerMenuService.emit([
+					{ icon: 'edit', label: 'Edit',
+						action: () => this.showForm = true }
+				]);
+
+				this.breadcrumbService.emit([
+					{ label: '[Issue Title]', action: ['issue', 'id'] },
+					{ label: '[Chapter Title]', action: ['chapter', article.chapter] },
+					{ label: article.title, action: ['article', article._id] }
+				]);
 
 				this.replyService.getChild<Article>('article', article)
 				.then((reply: Reply) => this.reply = reply)

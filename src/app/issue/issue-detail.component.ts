@@ -39,7 +39,6 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
 			.then((issue: Issue) => {
 				this.issue = issue;
 				this.breadcrumbService.emit([
-					{ label: 'Issues', action: 'issues' },
 					{ label: issue.title, action: ['issue', issue._id] }
 				]);
 			});

@@ -44,8 +44,7 @@ export class ChapterDetailComponent {
 				this.chapter = chapter;
 
 				this.breadcrumbService.emit([
-					{ label: 'Issues', action: 'issues' },
-					{ label: '', action: ['issue', ''] },
+					{ label: '[Issue Title]', action: ['issue', chapter.issue] },
 					{ label: this.chapter.title,
 						action: ['chapter', this.chapter._id] }
 				]);
