@@ -26,31 +26,31 @@
 </mat-form-field>
 
 <h2>Questions</h2>
-
 <p>
 	<mat-checkbox [(ngModel)]="useDefaultQuestions"
 		(change)="toggleUseDefault()">Use Default Questions</mat-checkbox>
 </p>
-<mat-form-field>
+<mat-form-field *ngIf="!useDefaultQuestions">
 	<input matInput placeholder="Observation"
 		[disabled]="useDefaultQuestions"
 		[(ngModel)]="questions.observation.message">
 </mat-form-field>
-<mat-form-field>
+<mat-form-field *ngIf="!useDefaultQuestions">
 	<input matInput placeholder="Interpretation"
 		[disabled]="useDefaultQuestions"
 		[(ngModel)]="questions.interpretation.message">
 </mat-form-field>
-<mat-form-field>
+<mat-form-field *ngIf="!useDefaultQuestions">
 	<input matInput placeholder="Application"
 		[disabled]="useDefaultQuestions"
 		[(ngModel)]="questions.application.message">
 </mat-form-field>
-<mat-form-field>
+<mat-form-field *ngIf="!useDefaultQuestions">
 	<input matInput placeholder="Implementation"
 		[disabled]="useDefaultQuestions"
 		[(ngModel)]="questions.implementation.message">
 </mat-form-field>
+
 <p>
 	<button mat-raised-button color="primary" (click)="doSave()">Save</button>
 	<button mat-raised-button (click)="doCancel()">Cancel</button>
