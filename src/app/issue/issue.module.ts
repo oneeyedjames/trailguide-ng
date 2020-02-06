@@ -7,7 +7,8 @@ import {
 	MatIconModule,
 	MatCardModule,
 	MatFormFieldModule,
-	MatInputModule
+	MatInputModule,
+	MatTabsModule
 } from '@angular/material';
 
 import { ChapterModule } from '../chapter/chapter.module';
@@ -35,6 +36,7 @@ export { Issue } from './issue.model';
 		MatCardModule,
 		MatFormFieldModule,
 		MatInputModule,
+		MatTabsModule,
 		ChapterModule
 	],
 	exports: [

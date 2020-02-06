@@ -1,6 +1,4 @@
 <div *ngIf="chapter">
-	<h2>Articles</h2>
-
 	<mat-table #table [dataSource]="articles" *ngIf="!showForm">
 		<ng-container matColumnDef="title">
 			<mat-header-cell *matHeaderCellDef>Title</mat-header-cell>

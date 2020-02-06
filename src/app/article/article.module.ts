@@ -10,7 +10,8 @@ import {
 	MatTableModule,
 	MatFormFieldModule,
 	MatInputModule,
-	MatCheckboxModule
+	MatCheckboxModule,
+	MatTabsModule
 } from '@angular/material';
 
 import { ArticleListComponent }   from './article-list.component';
@@ -48,7 +49,8 @@ export { Reply } from './reply.model';
 		MatTableModule,
 		MatFormFieldModule,
 		MatInputModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		MatTabsModule
 	],
 	exports: [
 		ArticleListComponent,

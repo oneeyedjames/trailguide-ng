@@ -11,6 +11,9 @@ import { PublicContentModel } from '../content.module';
 import { Chapter }		  from './chapter.model';
 import { ChapterService } from './chapter.service';
 
+import { HeaderMenuService } from '../header/header.module';
+import { BreadcrumbService } from '../breadcrumb/breadcrumb.module';
+
 @Component({
 	selector: 'tg-chapter-detail',
 	templateUrl: './chapter-detail.component.html'
@@ -23,20 +26,29 @@ export class ChapterDetailComponent {
 	chapter: Chapter;
 
 	constructor (
+		private headerMenuService: HeaderMenuService,
+		private breadcrumbService: BreadcrumbService,
 		private chapterService: ChapterService,
-		private linkService: EventService<Link>,
 		private router: Router,
 		private route: ActivatedRoute
 	) {}
 
 	ngOnInit() {
-		this.linkService.emit({ icon: 'edit', label: 'Edit',
-			action: () => this.toggleForm(true) });
+		this.headerMenuService.emit([
+			{ icon: 'edit', label: 'Edit', action: () => this.toggleForm(true) }
+		]);
 
 		this.sub = this.route.params.subscribe((params: Params) => {
 			this.chapterService.getOne(params['id'])
 			.then((chapter: Chapter) => {
 				this.chapter = chapter;
+
+				this.breadcrumbService.emit([
+					{ label: 'Issues', action: 'issues' },
+					{ label: '', action: ['issue', ''] },
+					{ label: this.chapter.title,
+						action: ['chapter', this.chapter._id] }
+				]);
 			});
 		});
 	}

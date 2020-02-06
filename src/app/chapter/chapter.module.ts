@@ -7,7 +7,8 @@ import {
 	MatIconModule,
 	MatTableModule,
 	MatFormFieldModule,
-	MatInputModule
+	MatInputModule,
+	MatTabsModule
 } from '@angular/material';
 
 import { LinkModule } from '../../lib/link.module';
@@ -37,6 +38,7 @@ export { Chapter } from './chapter.model';
 		MatTableModule,
 		MatFormFieldModule,
 		MatInputModule,
+		MatTabsModule,
 		LinkModule,
 		ArticleModule
 	],

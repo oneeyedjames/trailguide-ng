@@ -1,24 +1,25 @@
 <div *ngIf="issue">
-	<div class="row">
-		<div class="col-md-6">
-			<h2>
-				{{ issue.title }}
-				<div class="small">
-					Volume {{ issue.volumeNumber }},
-					Issue {{ issue.issueNumber }}
-				</div>
-			</h2>
-			<div *ngIf="!showForm">
-				<p>{{ issue.description }}</p>
-				<p class="small" style="text-align: right">
-					<em>published {{ issue.publishedAt | date:'MMMM yyyy':'UTC' }}</em>
-				</p>
-			</div>
-			<tg-issue-form *ngIf="showForm" [issue]="issue"
-				(save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>
+	<h1>
+		{{ issue.title }}
+		<div class="small">
+			Volume {{ issue.volumeNumber }},
+			Issue {{ issue.issueNumber }}
 		</div>
-		<div class="col-md-6">
+	</h1>
+
+	<mat-tab-group *ngIf="!showForm">
+		<mat-tab label="Details">
+			<p>{{ issue.description }}</p>
+			<p class="small" style="text-align: right">
+				<em>published {{ issue.publishedAt | date:'MMMM yyyy':'UTC' }}</em>
+			</p>
+		</mat-tab>
+
+		<mat-tab label="Chapters">
 			<tg-chapter-list [issue]="issue"></tg-chapter-list>
-		</div>
-	</div>
+		</mat-tab>
+	</mat-tab-group>
+
+	<tg-issue-form *ngIf="showForm" [issue]="issue"
+		(save)="onSave($event)" (cancel)="onCancel()"></tg-issue-form>
 </div>
