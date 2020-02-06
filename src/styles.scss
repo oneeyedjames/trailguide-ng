@@ -48,6 +48,9 @@ body { margin: 0; }
 	font-size: mat-font-size($config, body-2);
 	font-weight: mat-font-weight($config, body-2);
 	line-height: mat-line-height($config, body-2);
+}
+
+.capital {
 	display: inline-block;
 	&::first-letter { font-size: 1.3em; }
 }

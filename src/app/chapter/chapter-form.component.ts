@@ -17,42 +17,38 @@ export class ChapterFormComponent {
 		this.chapterCopy = JSON.parse(JSON.stringify(chapter));
 	}
 
-	@Output()
-	save = new EventEmitter<Chapter>();
+	@Output('save')
+	saveEvent = new EventEmitter<Chapter>();
 
-	@Output()
-	delete = new EventEmitter<Chapter>();
+	@Output('delete')
+	deleteEvent = new EventEmitter<Chapter>();
 
-	@Output()
-	cancel = new EventEmitter<any>();
+	@Output('cancel')
+	cancelEvent = new EventEmitter<any>();
 
 	constructor (private chapterService: ChapterService) {}
 
-	doSave() {
+	private save() {
 		this.chapterCopy.publishedAt = new Date(this.chapterCopy.publishedAt);
 		this.chapterService.save(this.chapterCopy)
-		.then(this.onSave.bind(this));
+		.then((chapter: Chapter) => {
+			this.chapter = chapter;
+			this.saveEvent.emit(chapter);
+		});
 	}
 
-	onSave(chapter: Chapter) {
-		this.chapter = chapter;
-		this.save.emit(chapter);
-	}
-
-	doDelete() {
+	private delete() {
 		if (confirm('Are you sure you want to delete this chapter?')) {
 			this.chapterService.delete(this.chapterCopy)
-			.then(this.onDelete.bind(this));
+			.then((chapter: Chapter) => {
+				this.chapter = chapter;
+				this.deleteEvent.emit(chapter);
+			});
 		}
 	}
 
-	onDelete(chapter: Chapter) {
-		this.chapter = chapter;
-		this.delete.emit(chapter);
-	}
-
-	doCancel() {
+	private cancel() {
 		this.chapter = this.chapterOrig;
-		this.cancel.emit(null);
+		this.cancelEvent.emit(null);
 	}
 }
